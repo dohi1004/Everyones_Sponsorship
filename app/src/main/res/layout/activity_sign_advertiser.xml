@@ -26,7 +26,7 @@
         android:gravity="center"
         android:text="                    advertiser"
         android:textColor="#44699F"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:textStyle="bold" />
 
 
@@ -51,16 +51,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/username_advertiser"
-        android:layout_marginTop="20dp"
         android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="30dp"
-        android:textColorHint="@color/hint"
-        android:textColor="@color/basic"
-        android:padding="20dp"
         android:background="@color/background1"
-        android:hint="password"
         android:drawableLeft="@drawable/ic_key_solid"
-        android:drawablePadding="20dp"></EditText>
+        android:drawablePadding="20dp"
+        android:hint="password"
+        android:padding="20dp"
+        android:textColor="@color/basic"
+        android:textColorHint="@color/hint"></EditText>
 
     <EditText
         android:id="@+id/business_id"
@@ -83,14 +83,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/business_id"
-        android:layout_marginTop="80dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginLeft="30dp"
+        android:layout_marginTop="80dp"
         android:layout_marginRight="30dp"
-        android:padding="20dp"
         android:backgroundTint="@color/button"
-        android:text="Submit"
-        android:layout_centerHorizontal="true">
-    </Button>
+        android:padding="20dp"
+        android:text="Submit"></Button>
 
 
 

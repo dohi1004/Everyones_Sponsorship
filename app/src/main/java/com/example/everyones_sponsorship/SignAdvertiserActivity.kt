@@ -8,10 +8,12 @@ import android.widget.Toast
 import com.example.everyones_sponsorship.databinding.ActivitySignAdvertiserBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DatabaseReference
 
 class SignAdvertiserActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        lateinit var database : DatabaseReference
         val binding = ActivitySignAdvertiserBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

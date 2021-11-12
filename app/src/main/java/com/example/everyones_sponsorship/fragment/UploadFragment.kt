@@ -4,11 +4,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.everyones_sponsorship.databinding.FragmentHomeBinding
+import com.example.everyones_sponsorship.databinding.FragmentSearchBinding
+import com.example.everyones_sponsorship.databinding.FragmentUploadBinding
 
-class HomeFragment : Fragment() {
+class UploadFragment : Fragment() {
 
-    private var mBinding : FragmentHomeBinding? = null
+    private var mBinding : FragmentUploadBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -16,7 +17,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val binding = FragmentHomeBinding.inflate(inflater, container, false)
+        val binding = FragmentUploadBinding.inflate(inflater, container, false)
 
         mBinding = binding
 
@@ -27,7 +28,5 @@ class HomeFragment : Fragment() {
         mBinding = null
         super.onDestroyView()
     }
-
-
 
 }

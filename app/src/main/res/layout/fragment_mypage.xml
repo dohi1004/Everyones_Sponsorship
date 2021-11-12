@@ -41,21 +41,41 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/ID"
+                    android:id="@+id/influencer_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="10dp"
-                    android:text="ID"
+                    android:text="E-mail"
                     android:textSize="15dp" />
 
-                <Button
-                    android:id="@+id/button"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
-                    android:text="Edit" />
+                    android:gravity="center">
+                    <Button
+                        android:id="@+id/button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="20dp"
+                        android:text="Edit"
+                        android:backgroundTint="@color/button"/>
+
+                    <Button
+                        android:id="@+id/influencer_logout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:text="Log-out"
+                        android:backgroundTint="@color/button"/>
+
+
+                </LinearLayout>
+
+
 
             </LinearLayout>
 

@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_marginBottom="20dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
 
     <TextView
@@ -41,7 +46,7 @@
         android:background="@color/background1"
         android:drawableLeft="@drawable/ic_user_solid"
         android:drawablePadding="20dp"
-        android:hint="username"
+        android:hint="E-mail"
         android:padding="20dp"
         android:textColor="@color/basic"
         android:textColorHint="@color/hint"></EditText>
@@ -97,3 +102,4 @@
 
 
 </RelativeLayout>
+</ScrollView>

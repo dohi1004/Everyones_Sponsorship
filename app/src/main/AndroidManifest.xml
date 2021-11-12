@@ -10,17 +10,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Everyones_Sponsorship">
         <activity android:name=".MainActivity">
+
+
         </activity>
 
         <activity android:name=".SplashActivity">
+
+        </activity>
+        <activity android:name=".SignAdvertiserActivity"></activity>
+        <activity android:name=".SignInfluencerActivity"></activity>
+        <activity android:name=".InfluencerMainActivity">
+        </activity>
+        <activity android:name=".AdvertiserMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignAdvertiserActivity"></activity>
-        <activity android:name=".SignInfluencerActivity"></activity>
-        <activity android:name=".InfluencerMainActivity"></activity>
     </application>
 
 </manifest>

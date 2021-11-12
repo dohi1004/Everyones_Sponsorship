@@ -4,11 +4,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.everyones_sponsorship.databinding.FragmentHomeBinding
+import com.example.everyones_sponsorship.databinding.FragmentAdvertiserHomeBinding
+import com.example.everyones_sponsorship.databinding.FragmentChattingBinding
 
-class HomeFragment : Fragment() {
+class AdvertiserHomeFragment : Fragment() {
 
-    private var mBinding : FragmentHomeBinding? = null
+    private var mBinding : FragmentAdvertiserHomeBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -16,7 +17,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val binding = FragmentHomeBinding.inflate(inflater, container, false)
+        val binding = FragmentAdvertiserHomeBinding.inflate(inflater, container, false)
 
         mBinding = binding
 
@@ -27,7 +28,5 @@ class HomeFragment : Fragment() {
         mBinding = null
         super.onDestroyView()
     }
-
-
 
 }

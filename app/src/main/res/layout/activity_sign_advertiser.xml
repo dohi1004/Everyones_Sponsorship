@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/signup_advertiser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="140dp"
+        android:layout_marginBottom="50dp"
+        android:gravity="center"
+        android:text="Sign up as                   "
+        android:textColor="#789CD3"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/advertiser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="140dp"
+        android:layout_marginBottom="50dp"
+        android:gravity="center"
+        android:text="                    advertiser"
+        android:textColor="#44699F"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+
+    <EditText
+        android:id="@+id/username_advertiser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/signup_advertiser"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"
+        android:background="@color/background1"
+        android:drawableLeft="@drawable/ic_user_solid"
+        android:drawablePadding="20dp"
+        android:hint="username"
+        android:padding="20dp"
+        android:textColor="@color/basic"
+        android:textColorHint="@color/hint"></EditText>
+
+    <EditText
+        android:id="@+id/password_advertiser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/username_advertiser"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"
+        android:background="@color/background1"
+        android:drawableLeft="@drawable/ic_key_solid"
+        android:drawablePadding="20dp"
+        android:hint="password"
+        android:padding="20dp"
+        android:textColor="@color/basic"
+        android:textColorHint="@color/hint"></EditText>
+
+    <EditText
+        android:id="@+id/business_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/password_advertiser"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"
+        android:background="@color/background1"
+        android:drawableLeft="@drawable/ic_briefcase_solid"
+        android:drawablePadding="20dp"
+        android:hint="business id"
+        android:padding="20dp"
+        android:textColor="@color/basic"
+        android:textColorHint="@color/hint"></EditText>
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/business_id"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginRight="30dp"
+        android:backgroundTint="@color/button"
+        android:padding="20dp"
+        android:text="Submit"></Button>
+
+
+
+
+
+</RelativeLayout>

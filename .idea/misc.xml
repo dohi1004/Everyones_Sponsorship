@@ -3,74 +3,31 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.22083333333333333" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/drawable/borderline.xml" value="0.303125" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/drawable/borderline_background.xml" value="0.38229166666666664" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/drawable/borderline_straight.xml" value="0.22083333333333333" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/drawable/ic_air_freshener_solid.xml" value="0.303125" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/drawable/ic_bars_solid.xml" value="0.22083333333333333" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/drawable/ic_baseball_ball_solid.xml" value="0.303125" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/drawable/ic_baseline_camera_alt_24.xml" value="0.38229166666666664" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.303125" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/drawable/ic_book_solid.xml" value="0.303125" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/drawable/ic_briefcase_solid.xml" value="0.303125" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/drawable/ic_camera_solid.xml" value="0.303125" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/drawable/ic_chair_solid.xml" value="0.303125" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/drawable/ic_compact_disc_solid.xml" value="0.303125" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/drawable/ic_dog_solid.xml" value="0.303125" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/drawable/ic_envelope_open_text_solid.xml" value="0.38229166666666664" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/drawable/ic_food_solid.xml" value="0.22083333333333333" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/drawable/ic_gamepad_solid.xml" value="0.303125" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/drawable/ic_home_solid.xml" value="0.38229166666666664" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/drawable/ic_instagram_brands.xml" value="0.303125" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/drawable/ic_key_solid.xml" value="0.303125" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/drawable/ic_launcher_background.xml" value="0.22083333333333333" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/drawable/ic_search_solid.xml" value="0.38229166666666664" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/drawable/ic_search_solid_top.xml" value="0.38229166666666664" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/drawable/ic_sign_in_alt_solid.xml" value="0.303125" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/drawable/ic_tablet_alt_solid.xml" value="0.22083333333333333" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/drawable/ic_tshirt_solid.xml" value="0.22083333333333333" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/drawable/ic_user_solid.xml" value="0.303125" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/drawable/login.xml" value="0.22083333333333333" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/drawable/mypage.xml" value="0.38229166666666664" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/drawable/rectangle_2.xml" value="0.22083333333333333" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_category.xml" value="0.2" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_category_selection.xml" value="0.31614583333333335" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_categorydetails.xml" value="0.33" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_chat.xml" value="0.31614583333333335" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_influencermain.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_join_advertiser.xml" value="0.2957427536231884" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_join_influencer.xml" value="0.2046875" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_login.xml" value="0.25" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_main.xml" value="0.16" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_main_influencer.xml" value="0.33" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_mypage_influencer.xml" value="0.16" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_productinfo.xml" value="0.18" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_review.xml" value="0.22" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_search.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_searchpage.xml" value="0.31614583333333335" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_searchresult.xml" value="0.2" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_sign_advertiser.xml" value="0.22" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_sign_influencer.xml" value="0.22" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_startscreen.xml" value="0.2869791666666667" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_uploads.xml" value="0.18" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/chatting_frag.xml" value="0.34427083333333336" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/fragment_chatting.xml" value="0.1" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/fragment_home.xml" value="0.14" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/fragment_mypage.xml" value="0.16" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/fragment_search.xml" value="0.3515625" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/influencer_home_frag.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/main_advertiser_frag.xml" value="0.31614583333333335" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/main_influencer_frag.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/mypage_influencer_frag.xml" value="0.34427083333333336" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/row_chat.xml" value="0.31614583333333335" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/searchpage_frag.xml" value="0.34427083333333336" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/menu/bottom_menu.xml" value="0.2046875" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/menu/top_app_bar_menu.xml" value="0.25" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/menu/top_app_bar_mypage.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/menu/top_app_bar_searchresult.xml" value="0.2046875" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.22083333333333333" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.22083333333333333" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/drawable/ic_book_solid.xml" value="0.30833333333333335" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/drawable/ic_briefcase_solid.xml" value="0.30833333333333335" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/drawable/ic_camera_solid.xml" value="0.30833333333333335" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/drawable/ic_compact_disc_solid.xml" value="0.30833333333333335" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/drawable/ic_gamepad_solid.xml" value="0.30833333333333335" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/drawable/rectangle_2.xml" value="0.30885416666666665" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_category.xml" value="0.2921875" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_login_empty.xml" value="0.2046875" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_main_influencer.xml" value="0.2921875" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_mypage_influencer.xml" value="0.2921875" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_productinfo.xml" value="0.2921875" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_review.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_search.xml" value="0.2921875" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_sign_advertiser.xml" value="0.2015625" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_sign_influencer.xml" value="0.33" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_splash.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_startscreen.xml" value="0.2921875" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_uploads.xml" value="0.2921875" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/chatting_frag.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/main_advertiser_frag.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/main_influencer_frag.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/mypage_influencer_frag.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/row_chat.xml" value="0.36614583333333334" />
       </map>
     </option>
   </component>
@@ -79,5 +36,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.33" />
+      </ProjectState>
+    </option>
   </component>
 </project>

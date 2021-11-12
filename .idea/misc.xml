@@ -36,21 +36,24 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/drawable/rectangle_2.xml" value="0.22083333333333333" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_category.xml" value="0.2" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_category_selection.xml" value="0.31614583333333335" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_categorydetails.xml" value="0.33" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_chat.xml" value="0.31614583333333335" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_join_advertiser.xml" value="0.2957427536231884" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_join_influencer.xml" value="0.2046875" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_main.xml" value="0.16" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_main_influencer.xml" value="0.18" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_main_influencer.xml" value="0.33" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_mypage_influencer.xml" value="0.16" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_productinfo.xml" value="0.18" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_review.xml" value="0.22" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_search.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_searchpage.xml" value="0.31614583333333335" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_searchresult.xml" value="0.2" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_sign_advertiser.xml" value="0.22" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_sign_influencer.xml" value="0.22" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_startscreen.xml" value="0.2869791666666667" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/activity_uploads.xml" value="0.18" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/main_advertiser_frag.xml" value="0.31614583333333335" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/layout/row_chat.xml" value="0.31614583333333335" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/menu/bottom_menu.xml" value="0.2046875" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Everyones_Sponsorship/app/src/main/res/menu/top_app_bar_menu.xml" value="0.25" />

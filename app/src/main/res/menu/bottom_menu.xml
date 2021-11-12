@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_home"
+        android:enabled="true"
+        android:icon="@drawable/ic_home_solid"
+        android:title="home"></item>
+
+    <item
+        android:id="@+id/search"
+        android:enabled="true"
+        android:icon="@drawable/ic_search_solid"
+        android:title="search"></item>
+
+    <item
+        android:id="@+id/chat"
+        android:enabled="true"
+        android:icon="@drawable/ic_envelope_open_text_solid"
+        android:title="chat"></item>
+
+    <item
+        android:id="@+id/mypage"
+        android:enabled="true"
+        android:icon="@drawable/ic_user_solid"
+        android:title="mypage"></item>
+
+</menu>

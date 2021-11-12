@@ -1,6 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+
+
+    <ScrollView
+        android:id="@+id/frame"
+        android:layout_width="match_parent"
+        android:layout_height="604dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavi"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:itemIconTint="#000000"
+        app:itemTextColor="#00000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/bottom_menu"
+        android:backgroundTint="@color/button"
+        tools:layout_editor_absoluteX="16dp" />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

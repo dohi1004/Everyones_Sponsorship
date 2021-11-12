@@ -17,6 +17,8 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
         </activity>
+        <activity android:name=".SignAdvertiserActivity"></activity>
+        <activity android:name=".SignInfluencerActivity"></activity>
     </application>
 
 </manifest>

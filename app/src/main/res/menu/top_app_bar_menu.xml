@@ -2,17 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/search"
-        android:icon="@drawable/ic_search_solid_top"
-        android:title="search"
-        android:contentDescription="search content"
-        app:showAsAction="ifRoom|collapseActionView"
-        app:actionViewClass="androidx.appcompat.widget.SearchView"></item>
-
-    <item
-        android:id="@+id/category"
-        android:title="category"
-        android:icon="@drawable/ic_bars_solid"
-        app:showAsAction="ifRoom"></item>
-
+        android:id="@+id/admenuchat"
+        android:icon="@drawable/ic_envelope_open_text_solid"
+        android:title="upload product"
+        android:iconTint="@color/basic"
+        app:showAsAction="ifRoom|collapseActionView"></item>
 </menu>

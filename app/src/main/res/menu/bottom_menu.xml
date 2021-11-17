@@ -13,12 +13,6 @@
         android:title="search"></item>
 
     <item
-        android:id="@+id/chattingFragment"
-        android:enabled="true"
-        android:icon="@drawable/ic_envelope_open_text_solid"
-        android:title="chat"></item>
-
-    <item
         android:id="@+id/mypageFragment"
         android:enabled="true"
         android:icon="@drawable/ic_user_solid"

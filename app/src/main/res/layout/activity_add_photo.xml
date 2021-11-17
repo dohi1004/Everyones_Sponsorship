@@ -28,11 +28,13 @@
                     android:gravity="center">
 
                     <ImageView
+                        android:id="@+id/addphoto_image"
                         android:layout_width="150dp"
                         android:layout_height="200dp"></ImageView>
 
                 </RelativeLayout>
                 <Button
+                    android:id="@+id/realupload"
                     android:layout_marginTop="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -136,20 +138,33 @@
             android:layout_marginTop="20dp"
             android:textStyle="bold"
             android:layout_gravity="center_horizontal"></TextView>
-
-        <ScrollView
+        <LinearLayout
             android:layout_marginTop="20dp"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/borderline_straight">
+        <EditText
+            android:id="@+id/ProductTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#00000000"
+            android:hint="put the product title here."
+            android:textSize="15dp"></EditText>
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
             android:layout_height="350dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/borderline">
+
             <EditText
                 android:id="@+id/ProductDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="put the product description here."
                 android:backgroundTint="#00000000"
-                android:textSize="15dp">
-            </EditText>
+                android:hint="put the product description here."
+                android:textSize="15dp"></EditText>
         </ScrollView>
 
         <LinearLayout

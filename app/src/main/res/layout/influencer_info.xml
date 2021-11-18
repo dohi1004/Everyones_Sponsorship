@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="140dp"
+    android:layout_height="120dp"
     android:layout_marginTop="10dp"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
@@ -23,7 +23,7 @@
 
             <ImageView
                 android:layout_weight="1"
-                android:id="@+id/productimage"
+                android:id="@+id/influencerimage"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 app:srcCompat="@drawable/borderline_straight"
@@ -36,23 +36,16 @@
                 android:orientation="vertical"
                 android:layout_weight="5"
                 android:gravity="center_horizontal">
-
                 <TextView
 
-                    android:id="@+id/productname"
+                    android:id="@+id/influencername"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Product name" />
 
-                <TextView
-                    android:layout_marginTop="5dp"
-                    android:id="@+id/writers"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Advertiser" />
 
                 <LinearLayout
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="20dp"
                     android:layout_gravity="center"
                     android:layout_below="@+id/imagelayout"
                     android:id="@+id/linear2"
@@ -64,10 +57,10 @@
                         android:id="@+id/imageView5"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:src="@drawable/ic_baseline_send_24" />
+                        android:src="@drawable/ic_baseline_star_24" />
 
                     <TextView
-                        android:id="@+id/applicationcount"
+                        android:id="@+id/ratings"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -80,39 +73,6 @@
             </LinearLayout>
 
         </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/imagelayout"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/borderline_straightbackground"
-            android:backgroundTint="@color/background1"
-            android:orientation="horizontal"
-            android:padding="2dp">
-
-            <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_baseline_access_time_24" />
-
-            <TextView
-                android:id="@+id/timediff"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="15dp"
-                android:gravity="center"
-                android:text="TextView" />
-
-
-        </LinearLayout>
-
-
-
-
 
     </LinearLayout>
 

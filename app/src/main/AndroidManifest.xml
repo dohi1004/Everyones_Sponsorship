@@ -25,13 +25,21 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+
         </activity>
         <activity android:name=".AdvertiserMainActivity">
 
         </activity>
-        <activity android:name=".AdvertiserDetailsActivity"></activity>
+        <activity android:name=".AdvertiserApplicationActivity"></activity>
         <activity android:name=".ChattingActivity"></activity>
         <activity android:name=".AddPhotoActivity"></activity>
+        <activity android:name=".SearchActivity"></activity>
+        <activity android:name=".CategoryActivity"></activity>
+        <activity android:name=".ProductDetailsActivity"></activity>
+        <activity android:name=".EditActivity"></activity>
+        <activity android:name=".MyPageActivity"></activity>
+        <activity android:name=".CategoryDetailsActivity"></activity>
     </application>
 
 </manifest>

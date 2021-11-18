@@ -5,8 +5,10 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.*
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -57,6 +59,7 @@ class AdvertiserMainActivity : AppCompatActivity() {
 
 
 // 여기서 자기가 올린거에 해당하는 거만 불러오게 만들기!! ( 지금 이거는 influencer에 똑같이 적용하면 될듯)
+
     FirebaseDatabase.getInstance().getReference("/Posts").orderByChild("writeTime").addChildEventListener(object: ChildEventListener{
         override fun onChildAdded(snapshot: DataSnapshot, prevChildKey: String?) {
             snapshot?.let{
@@ -124,7 +127,6 @@ class AdvertiserMainActivity : AppCompatActivity() {
         }
     })
 
-
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.top_app_bar_menu,menu)
@@ -169,9 +171,26 @@ class AdvertiserMainActivity : AppCompatActivity() {
             holder.timeTextView.text= getDiffTimeText(post.writeTime as Long)
 
             holder.itemView.setOnClickListener {
-                val intent = Intent(this@AdvertiserMainActivity, AdvertiserDetailsActivity::class.java)
-                intent.putExtra("postId",post.postId)
-                startActivity(intent)
+                val mDialogView = LayoutInflater.from(this@AdvertiserMainActivity).inflate(R.layout.advertiser_product_dialog, null)
+                val mBuilder = AlertDialog.Builder(this@AdvertiserMainActivity)
+                    .setView(mDialogView)
+                val mAlertDialog = mBuilder.show()
+                //  edit button 누르면 수정 페이지로
+                val editButton = mDialogView.findViewById<Button>(R.id.editButton)
+                editButton.setOnClickListener {
+                    val intent = Intent(this@AdvertiserMainActivity, EditActivity::class.java)
+                    intent.putExtra("postId",post.postId)
+                    startActivity(intent)
+                    mAlertDialog.dismiss()
+                }
+                //  application list 버튼 누르면 인플루언서 신청 목록 보이게
+                val applicationBtn = mDialogView.findViewById<Button>(R.id.applicationlistbtn)
+                applicationBtn.setOnClickListener {
+                    val intent = Intent(this@AdvertiserMainActivity, AdvertiserApplicationActivity::class.java)
+                    intent.putExtra("postId",post.postId)
+                    startActivity(intent)
+                    mAlertDialog.dismiss()
+                }
             }
         }
 
@@ -200,7 +219,7 @@ class AdvertiserMainActivity : AppCompatActivity() {
                     }
                 }
             }else{
-                val format = SimpleDateFormat("yyyy.MM.DD.HH")
+                val format = SimpleDateFormat("yyyy-MM-DD")
                 return format.format(Date(targetTime))
             }
 

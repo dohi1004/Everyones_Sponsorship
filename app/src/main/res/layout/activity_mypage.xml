@@ -1,27 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
-
         <LinearLayout
-            android:layout_below="@+id/toolbar"
-            android:id="@+id/profilelayout"
-            android:background="@color/background1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_margin="20dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -40,16 +31,16 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/advertiser_name"
+                    android:id="@+id/influencer_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="Advertiser Name"
+                    android:text="Influencer Name"
                     android:textSize="20dp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/advertiser_email"
+                    android:id="@+id/influencer_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -57,58 +48,65 @@
                     android:text="E-mail"
                     android:textSize="15dp" />
 
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:gravity="center">
-
+                    android:gravity="center"
+                    android:layout_marginTop="20dp">
                     <Button
-                        android:id="@+id/edit_advertiser"
+                        android:id="@+id/editbtn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginTop="10dp"
-                        android:backgroundTint="@color/button"
-                        android:text="Edit" />
+                        android:text="Edit"
+                        android:backgroundTint="@color/button"/>
 
                     <Button
-                        android:id="@+id/advertiserLogout"
+                        android:id="@+id/influencer_logout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginTop="10dp"
                         android:backgroundTint="@color/button"
                         android:text="Log-out" />
 
 
                 </LinearLayout>
 
+
+
             </LinearLayout>
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/uploadproductbtn"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_below="@+id/profilelayout"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
-            android:backgroundTint="@color/button"
-            android:gravity="center_horizontal"
-            android:text="Upload the product" />
-
-
         <LinearLayout
-            android:layout_marginTop="20dp"
-            android:id="@+id/layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_below="@+id/uploadproductbtn">
+            android:layout_margin="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="My Evaluation"
+                android:textSize="15dp" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/application_list"
@@ -117,33 +115,31 @@
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Product List"
+                android:text="Appplication List"
                 android:textSize="15dp"
                 android:textStyle="bold" />
 
-<!--            <TextView-->
-<!--                android:id="@+id/Finished_list"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginRight="20dp"-->
-<!--                android:layout_weight="1"-->
-<!--                android:gravity="center"-->
-<!--                android:text="Finished List"-->
-<!--                android:textSize="15dp"-->
-<!--                android:textStyle="bold" />-->
+            <TextView
+                android:id="@+id/Finished_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Finished List"
+                android:textSize="15dp"
+                android:textStyle="bold" />
 
 
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/layoutlast"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/layout"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="13dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="10dp"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -157,41 +153,36 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler_application"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="10dp"/>
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
 
 
             </LinearLayout>
 
 
-<!--            <LinearLayout-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="400dp"-->
-<!--                android:layout_marginLeft="10dp"-->
-<!--                android:layout_weight="1"-->
-<!--                android:background="@drawable/borderline_background"-->
-<!--                android:gravity="center"-->
-<!--                android:orientation="vertical">-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="400dp"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/borderline_background"
+                android:gravity="center"
+                android:orientation="vertical">
 
-<!--                <androidx.recyclerview.widget.RecyclerView-->
-<!--                    android:id="@+id/recycler_finished"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="match_parent" />-->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_finished"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
 
 
-<!--            </LinearLayout>-->
+            </LinearLayout>
 
 
         </LinearLayout>
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"></androidx.appcompat.widget.Toolbar>
 
-    </RelativeLayout>
+    </LinearLayout>
+
+
+
 </ScrollView>

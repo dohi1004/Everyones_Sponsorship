@@ -8,12 +8,12 @@
     android:weightSum="1">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/influencertoolbar"
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
-        app:menu="@menu/top_app_bar_influencer"
+        app:menu="@menu/top_app_bar_menu"
         android:theme="?attr/actionBarTheme"></androidx.appcompat.widget.Toolbar>
 
     <LinearLayout
@@ -29,5 +29,6 @@
             android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
 
     </LinearLayout>
+
 
 </LinearLayout>

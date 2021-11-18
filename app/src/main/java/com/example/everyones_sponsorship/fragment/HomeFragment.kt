@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.everyones_sponsorship.databinding.FragmentHomeBinding
+import com.example.everyones_sponsorship.databinding.FragmentMypageBinding
 
 class HomeFragment : Fragment() {
 
@@ -15,6 +16,7 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         val binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         mBinding = binding
@@ -26,7 +28,5 @@ class HomeFragment : Fragment() {
         mBinding = null
         super.onDestroyView()
     }
-
-
 
 }

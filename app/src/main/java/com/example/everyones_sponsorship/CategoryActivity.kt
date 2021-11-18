@@ -14,47 +14,47 @@ class CategoryActivity : AppCompatActivity() {
 
         binding.clothes.setOnClickListener {
             val intent = Intent(this, CategoryDetailsActivity::class.java)
-            intent.putExtra("category","clothes")
+            intent.putExtra("category","Clothes")
             startActivity(intent)
         }
         binding.pet.setOnClickListener {
             val intent = Intent(this, CategoryDetailsActivity::class.java)
-            intent.putExtra("category","pet")
+            intent.putExtra("category","Pet")
             startActivity(intent)
         }
         binding.games.setOnClickListener {
             val intent = Intent(this, CategoryDetailsActivity::class.java)
-            intent.putExtra("category","game")
+            intent.putExtra("category","Game")
             startActivity(intent)
         }
         binding.sports.setOnClickListener {
             val intent = Intent(this, CategoryDetailsActivity::class.java)
-            intent.putExtra("category","sports")
+            intent.putExtra("category","Sports")
             startActivity(intent)
         }
         binding.food.setOnClickListener {
             val intent = Intent(this, CategoryDetailsActivity::class.java)
-            intent.putExtra("category","food")
+            intent.putExtra("category","Food")
             startActivity(intent)
         }
         binding.furniture.setOnClickListener {
             val intent = Intent(this, CategoryDetailsActivity::class.java)
-            intent.putExtra("category","furniture")
+            intent.putExtra("category","Furniture")
             startActivity(intent)
         }
         binding.device.setOnClickListener {
             val intent = Intent(this, CategoryDetailsActivity::class.java)
-            intent.putExtra("category","device")
+            intent.putExtra("category","Device")
             startActivity(intent)
         }
         binding.beauty.setOnClickListener {
             val intent = Intent(this, CategoryDetailsActivity::class.java)
-            intent.putExtra("category","beauty")
+            intent.putExtra("category","Beauty")
             startActivity(intent)
         }
         binding.book.setOnClickListener {
             val intent = Intent(this, CategoryDetailsActivity::class.java)
-            intent.putExtra("category","book")
+            intent.putExtra("category","Book")
             startActivity(intent)
         }
 

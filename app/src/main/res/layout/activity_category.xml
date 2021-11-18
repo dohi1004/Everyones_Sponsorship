@@ -25,7 +25,7 @@
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:backgroundTint="#00000000"
-                    android:src="@drawable/ic_tshirt_solid" />
+                    android:src="@drawable/ic_clothes_solid" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:backgroundTint="#00000000"
-                        android:src="@drawable/ic_baseball_ball_solid" />
+                        android:src="@drawable/ic_sports_solid" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -89,7 +89,7 @@
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:backgroundTint="#00000000"
-                android:src="@drawable/ic_dog_solid" />
+                android:src="@drawable/ic_pet_solid" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -174,10 +174,8 @@
                 android:id="@+id/device"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginRight="10dp"
                 android:backgroundTint="#00000000"
-                android:src="@drawable/ic_tablet_alt_solid" />
+                android:src="@drawable/ic_device_solid" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

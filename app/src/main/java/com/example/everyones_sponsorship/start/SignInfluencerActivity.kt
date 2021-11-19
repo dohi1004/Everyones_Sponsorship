@@ -1,21 +1,21 @@
-package com.example.everyones_sponsorship
+package com.example.everyones_sponsorship.start
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
+import com.example.everyones_sponsorship.Influencer
 import com.example.everyones_sponsorship.databinding.ActivitySignInfluencerBinding
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 class SignInfluencerActivity : AppCompatActivity() {
+    private lateinit var database : DatabaseReference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        lateinit var database : DatabaseReference
         val binding = ActivitySignInfluencerBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -91,6 +91,11 @@ class SignInfluencerActivity : AppCompatActivity() {
                                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                 intent.putExtra("user_id", firebaseUser.uid)
                                 intent.putExtra("email_id", email)
+
+                                val influencer = Influencer(username = email, password = password, sns = snsid, INFO = "", image ="content://media/external/images/media/31")
+                                database = FirebaseDatabase.getInstance().getReference("Users/Influencers")
+                                database.child(firebaseUser.uid).setValue(influencer).addOnSuccessListener {
+                                }.addOnFailureListener {  }
                                 startActivity(intent)
                                 finish()
                             } else {
@@ -101,7 +106,6 @@ class SignInfluencerActivity : AppCompatActivity() {
                                 ).show()
                             }
                         }
-
                 }
             }
 

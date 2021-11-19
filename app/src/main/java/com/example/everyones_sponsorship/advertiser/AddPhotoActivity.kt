@@ -1,17 +1,17 @@
-package com.example.everyones_sponsorship
+package com.example.everyones_sponsorship.advertiser
 
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.*
+import com.example.everyones_sponsorship.Post
+import com.example.everyones_sponsorship.R
 import com.example.everyones_sponsorship.databinding.ActivityAddPhotoBinding
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ServerValue
 import com.google.firebase.firestore.FirebaseFirestore
@@ -72,7 +72,8 @@ class AddPhotoActivity : AppCompatActivity() {
 
         //spinner for category
         val categoryList = listOf<String>("Clothes","Sports","Game","Pet","Book","Furniture","Food","Device","Beauty")
-        val myAdapter = ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,categoryList)
+        val myAdapter = ArrayAdapter<String>(this,
+            R.layout.support_simple_spinner_dropdown_item,categoryList)
 
         binding.spinner.adapter = myAdapter
         binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
@@ -134,7 +135,7 @@ class AddPhotoActivity : AppCompatActivity() {
         binding.uploadbtn.setOnClickListener {
             contentUpload(productdescription.toString(),ratings, productname.toString(),category)
             Toast.makeText(this, "test.", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this,AdvertiserMainActivity::class.java)
+            val intent = Intent(this, AdvertiserMainActivity::class.java)
             startActivity(intent)
 
 

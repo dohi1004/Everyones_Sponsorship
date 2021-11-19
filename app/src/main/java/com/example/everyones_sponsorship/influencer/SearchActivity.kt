@@ -1,4 +1,4 @@
-package com.example.everyones_sponsorship
+package com.example.everyones_sponsorship.influencer
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

@@ -1,10 +1,9 @@
-package com.example.everyones_sponsorship
+package com.example.everyones_sponsorship.influencer
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.everyones_sponsorship.databinding.ActivityCategoryBinding
-import com.example.everyones_sponsorship.databinding.ActivityMainBinding
 
 class CategoryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

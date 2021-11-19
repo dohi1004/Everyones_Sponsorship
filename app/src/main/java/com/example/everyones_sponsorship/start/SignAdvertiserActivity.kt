@@ -1,14 +1,18 @@
-package com.example.everyones_sponsorship
+package com.example.everyones_sponsorship.start
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
+import com.example.everyones_sponsorship.Advertiser
+import com.example.everyones_sponsorship.Influencer
 import com.example.everyones_sponsorship.databinding.ActivitySignAdvertiserBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.activity_sign_advertiser.*
 
 class SignAdvertiserActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,7 +51,7 @@ class SignAdvertiserActivity : AppCompatActivity() {
                 else -> {
                     val email: String = binding.usernameAdvertiser.text.toString().trim{it <= ' '}
                     val password: String = binding.passwordAdvertiser.text.toString().trim{it <= ' '}
-                    val snsid: String = binding.businessId.text.toString().trim{it <= ' '}
+                    val businessid: String = binding.businessId.text.toString().trim{it <= ' '}
                     FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
@@ -63,6 +67,12 @@ class SignAdvertiserActivity : AppCompatActivity() {
                                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                 intent.putExtra("user_id", firebaseUser.uid)
                                 intent.putExtra("email_id", email)
+
+                                val advertiser = Advertiser(username = email, password = password, business = businessid)
+                                database = FirebaseDatabase.getInstance().getReference("Users/Advertisers")
+                                database.child(firebaseUser.uid).setValue(advertiser).addOnSuccessListener {
+                                }.addOnFailureListener {  }
+
                                 startActivity(intent)
                                 finish()
                             } else {

@@ -1,4 +1,4 @@
-package com.example.everyones_sponsorship
+package com.example.everyones_sponsorship.influencer
 
 import android.content.Intent
 import android.net.Uri
@@ -8,6 +8,9 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.example.everyones_sponsorship.Application
+import com.example.everyones_sponsorship.Influencer
+import com.example.everyones_sponsorship.R
 import com.example.everyones_sponsorship.databinding.ActivityProductinfoBinding
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
@@ -55,8 +58,7 @@ class ProductDetailsActivity : AppCompatActivity() {
                 // 해당 post id 에 influencer id를 unique 값으로 해서 influencer 정보 넘긴다!
                 database = FirebaseDatabase.getInstance().getReference("/Posts/$postId/Applications")
                 val userId = 0
-                val user = Application()
-                user.influencerId = userId
+                val user = Influencer(username = "test@naver.com", password = "19102095", sns = "yes", INFO = "", image ="content://media/external/images/media/31")
                 database.child(userId.toString()).setValue(user).addOnSuccessListener {
                 }.addOnFailureListener {
                     Toast.makeText(this, "Application fail", Toast.LENGTH_SHORT).show()
@@ -65,6 +67,7 @@ class ProductDetailsActivity : AppCompatActivity() {
                 val intent = Intent(this@ProductDetailsActivity, InfluencerMainActivity::class.java)
                 Toast.makeText(this, "Application success", Toast.LENGTH_SHORT).show()
                 startActivity(intent)
+                finish()
             }
         }
 

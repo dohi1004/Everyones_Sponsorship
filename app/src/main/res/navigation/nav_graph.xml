@@ -7,7 +7,7 @@
 
     <activity
         android:id="@+id/influencerMainActivity"
-        android:name="com.example.everyones_sponsorship.InfluencerMainActivity"
+        android:name="com.example.everyones_sponsorship.influencer.InfluencerMainActivity"
         android:label="InfluencerMainActivity" />
     <activity
         android:id="@+id/chattingActivity"
@@ -15,6 +15,6 @@
         android:label="ChattingActivity" />
     <activity
         android:id="@+id/searchActivity"
-        android:name="com.example.everyones_sponsorship.SearchActivity"
+        android:name="com.example.everyones_sponsorship.influencer.SearchActivity"
         android:label="SearchActivity" />
 </navigation>

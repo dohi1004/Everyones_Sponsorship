@@ -1,24 +1,15 @@
-package com.example.everyones_sponsorship
+package com.example.everyones_sponsorship.advertiser
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.everyones_sponsorship.databinding.ActivityAddPhotoBinding
+import com.example.everyones_sponsorship.Application
+import com.example.everyones_sponsorship.MyAdapter
 import com.example.everyones_sponsorship.databinding.ActivityApplicationlistBinding
-import com.example.everyones_sponsorship.databinding.ActivityProductinfoBinding
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_advertiser_main.*
 import kotlinx.android.synthetic.main.activity_applicationlist.*
 import kotlinx.android.synthetic.main.influencer_info.view.*
@@ -53,8 +44,6 @@ class AdvertiserApplicationActivity : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 snapshot?.let{
                     val application = it.getValue(Application::class.java)
-                    Log.d("ITM","${application?.image}")
-                    Log.d("ITM","$application")
                     if (application != null) {
                         applications.add(application)
                         recyclerview.adapter?.notifyDataSetChanged()
@@ -69,6 +58,7 @@ class AdvertiserApplicationActivity : AppCompatActivity() {
             }
         })
         }
+
 
 
 }

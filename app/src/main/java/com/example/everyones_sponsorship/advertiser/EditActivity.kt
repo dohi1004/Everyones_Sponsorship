@@ -1,11 +1,9 @@
-package com.example.everyones_sponsorship
+package com.example.everyones_sponsorship.advertiser
 
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
@@ -14,12 +12,12 @@ import android.widget.SeekBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
+import com.example.everyones_sponsorship.R
 import com.example.everyones_sponsorship.databinding.ActivityAddPhotoBinding
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ServerValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
@@ -84,7 +82,8 @@ class EditActivity : AppCompatActivity() {
             }
         })
 
-        val myAdapter = ArrayAdapter(this,R.layout.support_simple_spinner_dropdown_item,categoryList)
+        val myAdapter = ArrayAdapter(this,
+            R.layout.support_simple_spinner_dropdown_item,categoryList)
         //  category 새로 설정 받기
         binding.spinner.adapter = myAdapter
         binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
@@ -144,12 +143,12 @@ class EditActivity : AppCompatActivity() {
             if(productdescription == "")productdescription = originalmessage.toString()
             if(photoUri.toString()=="null")photoUri = originalimage.toString().toUri()
             contentUpload(productdescription,newratings, productname,newcategory, postId.toString())
-            val intent = Intent(this,AdvertiserMainActivity::class.java)
+            val intent = Intent(this, AdvertiserMainActivity::class.java)
             startActivity(intent)
             finish()
         }
         binding.back.setOnClickListener {
-            val intent = Intent(this,AdvertiserMainActivity::class.java)
+            val intent = Intent(this, AdvertiserMainActivity::class.java)
             startActivity(intent)
             finish()
         }

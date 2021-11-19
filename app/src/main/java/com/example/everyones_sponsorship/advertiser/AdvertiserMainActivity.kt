@@ -1,4 +1,4 @@
-package com.example.everyones_sponsorship
+package com.example.everyones_sponsorship.advertiser
 
 import android.Manifest
 import android.content.Intent
@@ -11,9 +11,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.everyones_sponsorship.*
+import com.example.everyones_sponsorship.R
 import com.example.everyones_sponsorship.databinding.ActivityAdvertiserMainBinding
 import com.google.firebase.database.*
-import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_add_photo.view.*
 import kotlinx.android.synthetic.main.activity_advertiser_main.*
@@ -43,7 +44,7 @@ class AdvertiserMainActivity : AppCompatActivity() {
         ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),1)
 
         binding.uploadproductbtn.setOnClickListener {
-            val intent = Intent(this,AddPhotoActivity::class.java)
+            val intent = Intent(this, AddPhotoActivity::class.java)
             startActivity(intent)
         }
 
@@ -136,7 +137,7 @@ class AdvertiserMainActivity : AppCompatActivity() {
         // for extension (search influencer) -> use when
         when(itemview){
             R.id.admenuchat -> {
-                val intent = Intent(this,ChatListActivity::class.java)
+                val intent = Intent(this, ChatListActivity::class.java)
                 startActivity(intent)
             }
         }

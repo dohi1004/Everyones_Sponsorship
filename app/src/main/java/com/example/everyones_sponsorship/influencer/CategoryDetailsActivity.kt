@@ -1,29 +1,27 @@
-package com.example.everyones_sponsorship
+package com.example.everyones_sponsorship.influencer
 
-import android.Manifest
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.everyones_sponsorship.databinding.ActivityAdvertiserMainBinding
-import com.example.everyones_sponsorship.databinding.ActivityInfluencermainBinding
-import com.example.everyones_sponsorship.fragment.MypageFragment
+import com.example.everyones_sponsorship.Post
+import com.example.everyones_sponsorship.R
+import com.example.everyones_sponsorship.databinding.ActivityCategorydetailsBinding
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_advertiser_main.*
+import kotlinx.android.synthetic.main.activity_categorydetails.*
 import kotlinx.android.synthetic.main.activity_influencermain.*
-import kotlinx.android.synthetic.main.fragment_mypage.*
 import kotlinx.android.synthetic.main.posts.view.*
 import org.joda.time.DateTime
 import org.joda.time.Days
@@ -31,40 +29,68 @@ import org.joda.time.Hours
 import org.joda.time.Minutes
 import java.text.SimpleDateFormat
 import java.util.*
-
-
-class InfluencerMainActivity : AppCompatActivity() {
-
-    private lateinit var  binding : ActivityInfluencermainBinding
+// -> recycler view item 하나 선택했을 때 아이템 정보가 로드 안됨 -> 확인 필요
+// category 별로 보이게 만들기
+class CategoryDetailsActivity : AppCompatActivity() {
+    private lateinit var  binding : ActivityCategorydetailsBinding
     val posts : MutableList<Post> = mutableListOf()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        binding = ActivityInfluencermainBinding.inflate(layoutInflater)
-
+        binding = ActivityCategorydetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.influencertoolbar)
+        // recycler view 구현 -> 특정 category에만 있는 list를 반환하도록 짜기 ( firebase 부분)
+        // search result -> 총 몇개의 게시물 있는 지 나타내기
+
+        val category = intent.getStringExtra("category")
+        val color = "#7C777B"
+        binding.categoryname.text = category
+        if(category == "Pet"){
+            binding.categoryimage.setImageResource(R.drawable.ic_pet_solid)
+            binding.categoryimage.setColorFilter(Color.parseColor(color))
+        }
+        if(category == "Clothes"){
+            binding.categoryimage.setImageResource(R.drawable.ic_clothes_solid)
+            binding.categoryimage.setColorFilter(Color.parseColor(color))
+        }
+        if(category == "Sports"){
+            binding.categoryimage.setImageResource(R.drawable.ic_sports_solid)
+            binding.categoryimage.setColorFilter(Color.parseColor(color))
+        }
+        if(category == "Furniture"){
+            binding.categoryimage.setImageResource(R.drawable.ic_chair_solid)
+            binding.categoryimage.setColorFilter(Color.parseColor(color))
+        }
+        if(category == "Food"){
+            binding.categoryimage.setImageResource(R.drawable.ic_food_solid)
+            binding.categoryimage.setColorFilter(Color.parseColor(color))
+        }
+        if(category == "Book"){
+            binding.categoryimage.setImageResource(R.drawable.ic_book_solid)
+            binding.categoryimage.setColorFilter(Color.parseColor(color))
+        }
+        if(category == "Game"){
+            binding.categoryimage.setImageResource(R.drawable.ic_gamepad_solid)
+            binding.categoryimage.setColorFilter(Color.parseColor(color))
+        }
+        if(category == "Device"){
+            binding.categoryimage.setImageResource(R.drawable.ic_device_solid)
+            binding.categoryimage.setColorFilter(Color.parseColor(color))
+        }
+        if(category == "Beauty"){
+            binding.categoryimage.setImageResource(R.drawable.ic_air_freshener_solid)
+            binding.categoryimage.setColorFilter(Color.parseColor(color))
+        }
+
 
 
         val layoutManager = LinearLayoutManager(this)
 
         layoutManager.reverseLayout = true
         layoutManager.stackFromEnd = true
-        recyclerview.layoutManager = layoutManager
-        recyclerview.adapter = InfluencerAdapter()
+        categoryrecyclerview.layoutManager = layoutManager
+        categoryrecyclerview.adapter = InfluencerAdapter()
 
-        binding.mypage.setOnClickListener {
-            val intent = Intent(this,MyPageActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-
-        binding.search.setOnClickListener {
-            val intent = Intent(this,SearchActivity::class.java)
-            startActivity(intent)
-        }
         FirebaseDatabase.getInstance().getReference("/Posts").orderByChild("writeTime").addChildEventListener(object:
             ChildEventListener {
             override fun onChildAdded(snapshot: DataSnapshot, prevChildKey: String?) {
@@ -74,11 +100,11 @@ class InfluencerMainActivity : AppCompatActivity() {
                     post?.let{
                         if(prevChildKey == null){
                             posts.add(it)
-                            recyclerview.adapter?.notifyItemInserted(posts.size-1)
+                            categoryrecyclerview.adapter?.notifyItemInserted(posts.size-1)
                         }else{
                             val prevIndex = posts.map{it.postId}.indexOf(prevChildKey)
                             posts.add(prevIndex+1, post)
-                            recyclerview.adapter?.notifyItemInserted(prevIndex+1)
+                            categoryrecyclerview.adapter?.notifyItemInserted(prevIndex+1)
                         }
 
                     }
@@ -91,7 +117,7 @@ class InfluencerMainActivity : AppCompatActivity() {
                     post?.let{
                         val prevIndex = posts.map{it.postId}.indexOf(prevChildKey)
                         posts[prevIndex + 1] = post
-                        recyclerview.adapter?.notifyItemChanged(prevIndex+1)
+                        categoryrecyclerview.adapter?.notifyItemChanged(prevIndex+1)
                     }
                 }
             }
@@ -103,15 +129,15 @@ class InfluencerMainActivity : AppCompatActivity() {
                     post?.let{
                         val existIndex = posts.map{it.postId}.indexOf(post.postId)
                         posts.removeAt(existIndex)
-                        recyclerview.adapter?.notifyItemRemoved(existIndex)
+                        categoryrecyclerview.adapter?.notifyItemRemoved(existIndex)
 
                         if(prevChildKey == null){
                             posts.add(post)
-                            recyclerview.adapter?.notifyItemChanged(posts.size-1)
+                            categoryrecyclerview.adapter?.notifyItemChanged(posts.size-1)
                         }else{
                             val prevIndex = posts.map{it.postId}.indexOf(prevChildKey)
                             posts.add(prevIndex+1,post)
-                            recyclerview.adapter?.notifyItemChanged(prevIndex+1)
+                            categoryrecyclerview.adapter?.notifyItemChanged(prevIndex+1)
                         }
                     }
                 }
@@ -123,7 +149,7 @@ class InfluencerMainActivity : AppCompatActivity() {
                     post?.let{post->
                         val existIndex = posts.map{it.postId}.indexOf(post.postId)
                         posts.removeAt(existIndex)
-                        recyclerview.adapter?.notifyItemRemoved(existIndex)
+                        categoryrecyclerview.adapter?.notifyItemRemoved(existIndex)
                     }
                 }
             }
@@ -136,28 +162,6 @@ class InfluencerMainActivity : AppCompatActivity() {
 
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.top_app_bar_influencer,menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        var itemview = item.itemId
-
-        // for extension (search influencer) -> use when
-        when(itemview){
-            R.id.chat -> {
-                val intent = Intent(this,ChatListActivity::class.java)
-                startActivity(intent)
-            }
-            R.id.categorymenu -> {
-                val intent = Intent(this,CategoryActivity::class.java)
-                startActivity(intent)
-            }
-        }
-        return false
-    }
-
     inner class InfluencerViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
         val imageView : ImageView = itemView.productimage
         val contentsText : TextView = itemView.productname
@@ -168,7 +172,7 @@ class InfluencerMainActivity : AppCompatActivity() {
 
     inner class InfluencerAdapter: RecyclerView.Adapter<InfluencerViewHolder>(){
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InfluencerViewHolder {
-            return InfluencerViewHolder(LayoutInflater.from(this@InfluencerMainActivity).inflate(R.layout.posts,parent,false))
+            return InfluencerViewHolder(LayoutInflater.from(this@CategoryDetailsActivity).inflate(R.layout.posts,parent,false))
         }
 
         override fun getItemCount(): Int {
@@ -183,10 +187,9 @@ class InfluencerMainActivity : AppCompatActivity() {
             holder.timeTextView.text= getDiffTimeText(post.writeTime as Long)
             // recylcer view item 클릭 시
             holder.itemView.setOnClickListener {
-                val intent = Intent(this@InfluencerMainActivity, ProductDetailsActivity::class.java)
                 intent.putExtra("postId",post.postId)
+                val intent = Intent(this@CategoryDetailsActivity, ProductDetailsActivity::class.java)
                 startActivity(intent)
-                finish()
             }
         }
 
@@ -221,5 +224,6 @@ class InfluencerMainActivity : AppCompatActivity() {
 
         }
 
-    }
+
+}
 }

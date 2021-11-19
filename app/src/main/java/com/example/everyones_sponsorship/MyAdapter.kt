@@ -23,7 +23,7 @@ class MyAdapter(var c: Context, var applications:MutableList<Application>) : Rec
         return applications.size
     }
 
-    override fun onBindViewHolder(holder: MyAdapter.ViewHolder, position: Int) {
+    open override fun onBindViewHolder(holder: MyAdapter.ViewHolder, position: Int) {
         val application = applications[position]
         Picasso.get().load(Uri.parse(application.image)).fit().centerCrop().into(holder.imageView)
         holder.who.text = application.influencerId.toString()

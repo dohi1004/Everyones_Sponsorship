@@ -43,11 +43,11 @@
             android:src="@drawable/ic_home_solid"
             android:backgroundTint="#00000000"></ImageButton>
         <ImageButton
-            android:id="@+id/chat"
+            android:id="@+id/search"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_envelope_open_text_solid"
+            android:src="@drawable/ic_search_solid_top"
             android:backgroundTint="#00000000"></ImageButton>
         <ImageButton
             android:id="@+id/mypage"

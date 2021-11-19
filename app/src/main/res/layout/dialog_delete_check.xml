@@ -6,31 +6,39 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Are you sure to delete this product?"
+        android:gravity="center"
+        android:textSize="18dp"></TextView>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="100dp"
         android:gravity="center"
-        android:layout_marginBottom="40dp"
         android:orientation="horizontal">
 
         <Button
-            android:layout_marginLeft="20dp"
-            android:id="@+id/editButton"
+            android:id="@+id/no"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
             android:backgroundTint="@color/button"
-            android:text="Edit" />
+            android:text="No" />
 
         <Button
-            android:id="@+id/applicationlistbtn"
+            android:id="@+id/yes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="20dp"
+            android:layout_marginBottom="10dp"
             android:backgroundTint="@color/button"
-            android:text="Application List" />
+            android:text="Yes" />
 
 
     </LinearLayout>

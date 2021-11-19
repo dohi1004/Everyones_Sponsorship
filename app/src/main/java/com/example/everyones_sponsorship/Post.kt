@@ -8,5 +8,6 @@ class Post {
     var writeTime:Any = Any()
     var image = ""
     var rating = 0
+    var category = ""
 //    var applictioncount = 0
 }

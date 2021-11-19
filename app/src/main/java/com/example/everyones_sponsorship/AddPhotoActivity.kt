@@ -6,10 +6,8 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.ArrayAdapter
-import android.widget.EditText
-import android.widget.SeekBar
-import android.widget.Toast
+import android.view.View
+import android.widget.*
 import com.example.everyones_sponsorship.databinding.ActivityAddPhotoBinding
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
@@ -40,6 +38,7 @@ class AddPhotoActivity : AppCompatActivity() {
         val seekBar = binding.ratings
         // initial rating
         var ratings = 3
+        var category = ""
 
         // seekbar for ratings
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
@@ -71,6 +70,51 @@ class AddPhotoActivity : AppCompatActivity() {
             }
         })
 
+        //spinner for category
+        val categoryList = listOf<String>("Clothes","Sports","Game","Pet","Book","Furniture","Food","Device","Beauty")
+        val myAdapter = ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,categoryList)
+
+        binding.spinner.adapter = myAdapter
+        binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+                when(position){
+                    0 -> {
+                        category = "Clothes"
+
+                    }
+                    1 -> {
+                        category = "Sports"
+                    }
+                    2 -> {
+                        category = "Game"
+                    }
+                    3 -> {
+                        category = "Pet"
+                    }
+                    4 -> {
+                        category = "Book"
+                    }
+                    5 -> {
+                        category = "Furniture"
+                    }
+                    6 -> {
+                        category = "Food"
+                    }
+                    7 -> {
+                        category = "Device"
+                    }
+                    8 -> {
+                        category = "Beauty"
+                    }
+
+                }
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+            }
+        }
+
+
 
         binding.realupload.setOnClickListener{
 
@@ -88,7 +132,7 @@ class AddPhotoActivity : AppCompatActivity() {
 
         //add image upload event
         binding.uploadbtn.setOnClickListener {
-            contentUpload(productdescription.toString(),ratings, productname.toString())
+            contentUpload(productdescription.toString(),ratings, productname.toString(),category)
             Toast.makeText(this, "test.", Toast.LENGTH_SHORT).show()
             val intent = Intent(this,AdvertiserMainActivity::class.java)
             startActivity(intent)
@@ -97,17 +141,6 @@ class AddPhotoActivity : AppCompatActivity() {
         }
 
 
-        //spinner for category
-        val categoryList = listOf<String>("Clothes","Sports","Game","Pet","Book","Furniture","Food","Device","Beauty")
-        val myAdapter = ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,categoryList)
-
-
-        binding.spinner.adapter = myAdapter
-//        binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-//            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-//                binding.
-//            }
-//        }
 
 
 
@@ -128,7 +161,7 @@ class AddPhotoActivity : AppCompatActivity() {
             }
         }
     }
-    fun contentUpload(description: String, rating : Int, productname : String){
+    fun contentUpload(description: String, rating : Int, productname : String, category:String){
         var timestamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
         var imageFileName = "IMAGE_" + timestamp + "_.png"
 
@@ -142,6 +175,7 @@ class AddPhotoActivity : AppCompatActivity() {
         post.image = photoUri.toString()
         post.writeTime = ServerValue.TIMESTAMP
         post.rating = rating
+        post.category = category
 
         database.setValue(post)
         Toast.makeText(this, "Upload complete", Toast.LENGTH_SHORT).show()

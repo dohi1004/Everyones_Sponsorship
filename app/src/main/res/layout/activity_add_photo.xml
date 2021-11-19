@@ -90,6 +90,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
                         <TextView
+                            android:layout_marginTop="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Ratings"
@@ -97,32 +98,15 @@
                             android:layout_gravity="center_horizontal"></TextView>
 
                         <SeekBar
+                            android:layout_marginTop="20dp"
                             android:id="@+id/ratings"
                             style="@style/Widget.AppCompat.SeekBar.Discrete"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:max="4"
+                            android:layout_marginBottom="30dp"
                             android:progress="2" />
 
-
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_marginTop="15dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginBottom="15dp">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Followers"
-                            android:textSize="10dp"
-                            android:layout_gravity="center_horizontal"></TextView>
-
-                        <SeekBar
-                            android:id="@+id/follower"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
 
                     </LinearLayout>
 
@@ -144,6 +128,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/borderline_straight">
         <EditText
+            android:layout_margin="10dp"
             android:id="@+id/ProductTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -159,10 +144,10 @@
             android:background="@drawable/borderline">
 
             <EditText
-                android:layout_margin="20dp"
                 android:id="@+id/ProductDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:backgroundTint="#00000000"
                 android:hint="put the product description here."
                 android:textSize="15dp"></EditText>

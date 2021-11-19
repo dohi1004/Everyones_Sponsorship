@@ -34,11 +34,12 @@ class ProductDetailsActivity : AppCompatActivity() {
         binding.backbtn.setOnClickListener {
             val intent = Intent(this@ProductDetailsActivity, InfluencerMainActivity::class.java)
             startActivity(intent)
+            finish()
         }
         // 신청하기
         binding.applybtn.setOnClickListener {
             // 팝업 창 -> 유저에게 재확인 요청
-            val mDialogView = LayoutInflater.from(this).inflate(R.layout.apply_check_dialog, null)
+            val mDialogView = LayoutInflater.from(this).inflate(R.layout.dialog_apply_check, null)
             val mBuilder = AlertDialog.Builder(this)
                 .setView(mDialogView)
             val mAlertDialog = mBuilder.show()

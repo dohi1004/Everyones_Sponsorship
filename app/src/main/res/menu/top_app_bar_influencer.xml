@@ -2,8 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/searchmenu"
-        android:icon="@drawable/ic_search_solid_top"
+        android:id="@+id/chat"
+        android:icon="@drawable/ic_envelope_open_text_solid"
         android:title="category"
         android:iconTint="@color/basic"
         app:showAsAction="ifRoom|collapseActionView"></item>

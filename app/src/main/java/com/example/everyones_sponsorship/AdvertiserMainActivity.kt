@@ -5,19 +5,15 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.*
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.everyones_sponsorship.databinding.ActivityAdvertiserMainBinding
-import com.google.firebase.database.ChildEventListener
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
+import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_add_photo.view.*
 import kotlinx.android.synthetic.main.activity_advertiser_main.*
@@ -35,6 +31,7 @@ class AdvertiserMainActivity : AppCompatActivity() {
 
     private lateinit var  binding : ActivityAdvertiserMainBinding
     val posts : MutableList<Post> = mutableListOf()
+    private lateinit var database : DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -139,7 +136,7 @@ class AdvertiserMainActivity : AppCompatActivity() {
         // for extension (search influencer) -> use when
         when(itemview){
             R.id.admenuchat -> {
-                val intent = Intent(this,ChattingActivity::class.java)
+                val intent = Intent(this,ChatListActivity::class.java)
                 startActivity(intent)
             }
         }
@@ -171,7 +168,7 @@ class AdvertiserMainActivity : AppCompatActivity() {
             holder.timeTextView.text= getDiffTimeText(post.writeTime as Long)
 
             holder.itemView.setOnClickListener {
-                val mDialogView = LayoutInflater.from(this@AdvertiserMainActivity).inflate(R.layout.advertiser_product_dialog, null)
+                val mDialogView = LayoutInflater.from(this@AdvertiserMainActivity).inflate(R.layout.dialog_advertiser_product, null)
                 val mBuilder = AlertDialog.Builder(this@AdvertiserMainActivity)
                     .setView(mDialogView)
                 val mAlertDialog = mBuilder.show()
@@ -180,6 +177,11 @@ class AdvertiserMainActivity : AppCompatActivity() {
                 editButton.setOnClickListener {
                     val intent = Intent(this@AdvertiserMainActivity, EditActivity::class.java)
                     intent.putExtra("postId",post.postId)
+                    intent.putExtra("productname",post.productname)
+                    intent.putExtra("message",post.message)
+                    intent.putExtra("category",post.category)
+                    intent.putExtra("rating",post.rating)
+                    intent.putExtra("image",post.image)
                     startActivity(intent)
                     mAlertDialog.dismiss()
                 }
@@ -190,6 +192,28 @@ class AdvertiserMainActivity : AppCompatActivity() {
                     intent.putExtra("postId",post.postId)
                     startActivity(intent)
                     mAlertDialog.dismiss()
+                }
+                // 삭제 버튼 -> 재확인 dialog 띄움 -> no하면 메인 페이지 보이게, yes -> firebase에서 데이터 삭제
+                val deleteButton = mDialogView.findViewById<Button>(R.id.deleteButton)
+                deleteButton.setOnClickListener {
+                    mAlertDialog.dismiss()
+                    val deletedialog = LayoutInflater.from(this@AdvertiserMainActivity).inflate(R.layout.dialog_delete_check, null)
+                    val deleteBuilder = AlertDialog.Builder(this@AdvertiserMainActivity)
+                        .setView(deletedialog)
+                    val deleteDialog = deleteBuilder.show()
+                    val noBtn = deletedialog.findViewById<Button>(R.id.no)
+                    noBtn.setOnClickListener {
+                        deleteDialog.dismiss()
+                    }
+                    val yesBtn = deletedialog.findViewById<Button>(R.id.yes)
+                    yesBtn.setOnClickListener {
+                        database = FirebaseDatabase.getInstance().getReference("Posts")
+                        database.child(post.postId).removeValue().addOnSuccessListener {
+                            Toast.makeText(this@AdvertiserMainActivity, "Post is removed.", Toast.LENGTH_SHORT).show()
+                        }.addOnFailureListener {  }
+                        deleteDialog.dismiss()
+
+                    }
                 }
             }
         }

@@ -58,10 +58,11 @@ class InfluencerMainActivity : AppCompatActivity() {
         binding.mypage.setOnClickListener {
             val intent = Intent(this,MyPageActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
-        binding.chat.setOnClickListener {
-            val intent = Intent(this,ChattingActivity::class.java)
+        binding.search.setOnClickListener {
+            val intent = Intent(this,SearchActivity::class.java)
             startActivity(intent)
         }
         FirebaseDatabase.getInstance().getReference("/Posts").orderByChild("writeTime").addChildEventListener(object:
@@ -145,8 +146,8 @@ class InfluencerMainActivity : AppCompatActivity() {
 
         // for extension (search influencer) -> use when
         when(itemview){
-            R.id.searchmenu -> {
-                val intent = Intent(this,SearchActivity::class.java)
+            R.id.chat -> {
+                val intent = Intent(this,ChatListActivity::class.java)
                 startActivity(intent)
             }
             R.id.categorymenu -> {
@@ -185,6 +186,7 @@ class InfluencerMainActivity : AppCompatActivity() {
                 val intent = Intent(this@InfluencerMainActivity, ProductDetailsActivity::class.java)
                 intent.putExtra("postId",post.postId)
                 startActivity(intent)
+                finish()
             }
         }
 

@@ -74,6 +74,8 @@ class MyPageActivity : AppCompatActivity() {
             val editButton = mDialogView.findViewById<Button>(R.id.editbtn)
             editButton.setOnClickListener {
 
+                // 정보가 수정될 수 있도록 변환 필요
+
             }
         }
 

@@ -26,13 +26,15 @@
 
         </activity>
         <activity android:name=".advertiser.AdvertiserMainActivity">
+
+        </activity>
+        <activity android:name=".advertiser.AdvertiserApplicationActivity"></activity>
+        <activity android:name=".ChattingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".advertiser.AdvertiserApplicationActivity"></activity>
-        <activity android:name=".ChattingActivity"></activity>
         <activity android:name=".advertiser.AddPhotoActivity"></activity>
         <activity android:name=".influencer.SearchActivity"></activity>
         <activity android:name=".influencer.CategoryActivity"></activity>

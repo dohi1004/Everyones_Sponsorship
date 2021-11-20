@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.everyones_sponsorship.*
 import com.example.everyones_sponsorship.R
 import com.example.everyones_sponsorship.databinding.ActivityAdvertiserMainBinding
+import com.example.everyones_sponsorship.start.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
@@ -50,6 +51,12 @@ class AdvertiserMainActivity : AppCompatActivity() {
         binding.uploadproductbtn.setOnClickListener {
             val intent = Intent(this, AddPhotoActivity::class.java)
             startActivity(intent)
+        }
+        binding.advertiserLogout.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            startActivity(Intent(this, MainActivity::class.java))
+            Toast.makeText(this@AdvertiserMainActivity, "Successfully log-out", Toast.LENGTH_SHORT).show()
+            finish()
         }
 
     val layoutManager = LinearLayoutManager(this@AdvertiserMainActivity)

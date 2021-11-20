@@ -68,11 +68,17 @@ class MyPageActivity : AppCompatActivity() {
         binding.influencerLogout.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
             startActivity(Intent(this@MyPageActivity, MainActivity::class.java))
+            Toast.makeText(this, "Successfully log-out", Toast.LENGTH_SHORT).show()
             finish()
         }
 
 
         readData(uid)
+
+
+
+
+
 
 
         val layoutManager = LinearLayoutManager(this)

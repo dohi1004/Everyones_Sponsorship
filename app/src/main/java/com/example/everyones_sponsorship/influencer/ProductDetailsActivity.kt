@@ -38,6 +38,7 @@ class ProductDetailsActivity : AppCompatActivity() {
         val image = intent.getStringExtra("image")
         val message = intent.getStringExtra("message")
         val time = intent.getStringExtra("timestamp")
+        val ratings = intent.getStringExtra("rating")
 
         binding.productname.text = productname.toString()
         binding.Productdetails.text = message.toString()
@@ -80,7 +81,7 @@ class ProductDetailsActivity : AppCompatActivity() {
                         }.addOnFailureListener {
                             Toast.makeText(this, "Application fail", Toast.LENGTH_SHORT).show()
                         }
-                        // 신청 리스트 만들려면 필요..
+//                         신청 리스트 만들려면 필요..
                         FirebaseDatabase.getInstance().getReference("/Users/Influencers/$userId/Applications").child(
                             postId.toString()
                         ).setValue("yes").addOnSuccessListener {
@@ -88,11 +89,20 @@ class ProductDetailsActivity : AppCompatActivity() {
                             Toast.makeText(this, "Application fail", Toast.LENGTH_SHORT).show()
                         }
 
+
                     }else{
                     }
                 }.addOnFailureListener {
                     Toast.makeText(this, "read fail", Toast.LENGTH_SHORT).show()
                 }
+//                val post = Postdata(productname=productname.toString(), category = category.toString(), image = image.toString(), message = message.toString()
+//                    , postId = postId.toString(), rating = ratings.toString().toInt())
+//
+//                FirebaseDatabase.getInstance().getReference("/Users/Influencers/$userId/Applications").child(postId.toString())
+//                    .setValue(post).addOnSuccessListener {
+//                    }.addOnFailureListener {
+//                        Toast.makeText(this, "Application fail", Toast.LENGTH_SHORT).show()
+//                    }
 
                 val intent = Intent(this@ProductDetailsActivity, InfluencerMainActivity::class.java)
                 Toast.makeText(this, "Application success", Toast.LENGTH_SHORT).show()

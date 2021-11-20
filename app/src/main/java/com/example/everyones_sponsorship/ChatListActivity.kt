@@ -4,8 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.everyones_sponsorship.databinding.ActivityChatlistBinding
+import com.google.firebase.database.FirebaseDatabase
 
 class ChatListActivity : AppCompatActivity() {
+    private val fireDatabase = FirebaseDatabase.getInstance().reference
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

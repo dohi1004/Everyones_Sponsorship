@@ -20,6 +20,7 @@ import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.HashMap
 
 class ChatModel (val users: HashMap<String, Boolean> = HashMap(),
                  val comments : HashMap<String, Comment> = HashMap()){
@@ -139,7 +140,7 @@ class ChattingActivity : AppCompatActivity() {
     inner class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.MessageViewHolder>() {
         val textView_topName = findViewById<TextView>(R.id.minsun)
         private val comments = ArrayList<ChatModel.Comment>()
-        private var friend : Friend? = null
+        private var friend : Friend? = null // 이부분 influencer나 advertiser dataclass로 연동 필요함
         init{
             databaseReference.child("users").child(destinationUid.toString()).addListenerForSingleValueEvent(object : ValueEventListener{
                 override fun onCancelled(error: DatabaseError) {

@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.everyones_sponsorship.*
 import com.example.everyones_sponsorship.databinding.ActivityInfluencermainBinding
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -42,7 +43,6 @@ class InfluencerMainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.influencertoolbar)
 
-        val uid = intent.getStringExtra("user_id")
         val layoutManager = LinearLayoutManager(this)
 
         layoutManager.reverseLayout = true
@@ -52,7 +52,6 @@ class InfluencerMainActivity : AppCompatActivity() {
 
         binding.mypage.setOnClickListener {
             val intent = Intent(this, MyPageActivity::class.java)
-            intent.putExtra("user_id",uid)
             startActivity(intent)
             finish()
         }
@@ -181,8 +180,13 @@ class InfluencerMainActivity : AppCompatActivity() {
             holder.itemView.setOnClickListener {
                 val intent = Intent(this@InfluencerMainActivity, ProductDetailsActivity::class.java)
                 intent.putExtra("postId",post.postId)
+                intent.putExtra("productname",post.productname)
+                intent.putExtra("message",post.message)
+                intent.putExtra("category",post.category)
+                intent.putExtra("rating",post.rating)
+                intent.putExtra("image",post.image)
+                intent.putExtra("timestamp", post.writeTime as Long)
                 startActivity(intent)
-                finish()
             }
         }
 

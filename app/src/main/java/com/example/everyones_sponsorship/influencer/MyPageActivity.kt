@@ -3,6 +3,7 @@ package com.example.everyones_sponsorship.influencer
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,7 +44,7 @@ class MyPageActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMypageBinding
     val posts: MutableList<Post> = mutableListOf()
     private lateinit var database : DatabaseReference
-
+    val uid = FirebaseAuth.getInstance().currentUser!!.uid
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMypageBinding.inflate(layoutInflater)
@@ -61,31 +62,18 @@ class MyPageActivity : AppCompatActivity() {
         }
 
         binding.editbtn.setOnClickListener {
-            val mDialogView =
-                LayoutInflater.from(this).inflate(R.layout.dialog_influencer_profile, null)
-            val mBuilder = AlertDialog.Builder(this)
-                .setView(mDialogView)
-            val mAlertDialog = mBuilder.show()
-
-
-            val backButton = mDialogView.findViewById<Button>(R.id.backbtn)
-            backButton.setOnClickListener {
-                mAlertDialog.dismiss()
-            }
-            val editButton = mDialogView.findViewById<Button>(R.id.editbtn)
-            editButton.setOnClickListener {
-
-                // 정보가 수정될 수 있도록 변환 필요
-
-            }
+            val intent = Intent(this, ProfileEditActivity::class.java)
+            startActivity(intent)
         }
         binding.influencerLogout.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
             startActivity(Intent(this@MyPageActivity, MainActivity::class.java))
             finish()
         }
-        val uid = intent.getStringExtra("user_id")
-        readData(uid.toString())
+
+
+        readData(uid)
+
 
         val layoutManager = LinearLayoutManager(this)
         layoutManager.reverseLayout = true
@@ -183,4 +171,6 @@ class MyPageActivity : AppCompatActivity() {
         }
 
     }
+
+
 }

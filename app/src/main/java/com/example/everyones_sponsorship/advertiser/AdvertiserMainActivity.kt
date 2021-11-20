@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.everyones_sponsorship.*
 import com.example.everyones_sponsorship.R
 import com.example.everyones_sponsorship.databinding.ActivityAdvertiserMainBinding
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_add_photo.view.*
@@ -33,6 +34,7 @@ class AdvertiserMainActivity : AppCompatActivity() {
     private lateinit var  binding : ActivityAdvertiserMainBinding
     val posts : MutableList<Post> = mutableListOf()
     private lateinit var database : DatabaseReference
+    val userId =  FirebaseAuth.getInstance().currentUser!!.uid
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +42,8 @@ class AdvertiserMainActivity : AppCompatActivity() {
         binding = ActivityAdvertiserMainBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
+        readData(userId)
+
         setSupportActionBar(binding.toolbar)
         ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),1)
 
@@ -249,5 +253,22 @@ class AdvertiserMainActivity : AppCompatActivity() {
             }
 
         }
+    }
+    private fun readData(uid : String){
+        database = FirebaseDatabase.getInstance().getReference("/Users/Advertisers")
+        database.child(uid).get().addOnSuccessListener {
+            if(it.exists()){
+                val name = it.child("username").value
+                val business = it.child("business").value
+                binding.advertiserName.text = name.toString()
+                binding.advertiserid.text = business.toString()
+
+
+            }else{
+            }
+        }.addOnFailureListener {
+            Toast.makeText(this@AdvertiserMainActivity, "read fail", Toast.LENGTH_SHORT).show()
+        }
+
     }
 }

@@ -40,7 +40,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/advertiser_name"
+                    android:id="@+id/advertiserName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -49,12 +49,12 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/advertiser_email"
+                    android:id="@+id/advertiserid"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="10dp"
-                    android:text="E-mail"
+                    android:text="Business Id"
                     android:textSize="15dp" />
 
 

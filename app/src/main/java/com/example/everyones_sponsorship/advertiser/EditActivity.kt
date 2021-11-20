@@ -198,7 +198,7 @@ class EditActivity : AppCompatActivity() {
 
     private fun readData(postId: String){
         database = FirebaseDatabase.getInstance().getReference("/Posts")
-        database.child(postId.toString()).get().addOnSuccessListener {
+        database.child(postId).get().addOnSuccessListener {
             if(it.exists()){
                 var position = 0
                 val productname = it.child("productname").value

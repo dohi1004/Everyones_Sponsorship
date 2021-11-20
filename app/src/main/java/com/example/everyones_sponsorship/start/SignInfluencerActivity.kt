@@ -92,7 +92,7 @@ class SignInfluencerActivity : AppCompatActivity() {
                                 intent.putExtra("user_id", firebaseUser.uid)
                                 intent.putExtra("email_id", email)
 
-                                val influencer = Influencer(username = email, password = password, sns = snsid, INFO = "", image ="content://media/external/images/media/31")
+                                val influencer = Influencer(username = email, sns = snsid, INFO = "", image ="content://media/external/images/media/31", uid = firebaseUser.uid)
                                 database = FirebaseDatabase.getInstance().getReference("Users/Influencers")
                                 database.child(firebaseUser.uid).setValue(influencer).addOnSuccessListener {
                                 }.addOnFailureListener {  }

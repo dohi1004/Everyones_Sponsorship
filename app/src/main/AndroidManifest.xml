@@ -16,10 +16,7 @@
         <activity android:name=".start.MainActivity">
         </activity>
         <activity android:name=".start.SplashActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
         <activity android:name=".start.SignAdvertiserActivity"></activity>
         <activity android:name=".start.SignInfluencerActivity">
@@ -43,7 +40,10 @@
         <activity android:name=".influencer.MyPageActivity"></activity>
         <activity android:name=".influencer.CategoryDetailsActivity"></activity>
         <activity android:name=".ChatListActivity">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

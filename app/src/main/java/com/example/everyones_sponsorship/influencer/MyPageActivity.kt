@@ -23,6 +23,7 @@ import com.example.everyones_sponsorship.advertiser.EditActivity
 import com.example.everyones_sponsorship.databinding.ActivityAdvertiserMainBinding
 import com.example.everyones_sponsorship.databinding.ActivityMypageBinding
 import com.example.everyones_sponsorship.databinding.ActivityProductinfoBinding
+import com.example.everyones_sponsorship.start.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
@@ -78,7 +79,11 @@ class MyPageActivity : AppCompatActivity() {
 
             }
         }
-
+        binding.influencerLogout.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            startActivity(Intent(this@MyPageActivity, MainActivity::class.java))
+            finish()
+        }
         val uid = intent.getStringExtra("user_id")
         readData(uid.toString())
 

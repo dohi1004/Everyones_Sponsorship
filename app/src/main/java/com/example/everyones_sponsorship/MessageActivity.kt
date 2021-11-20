@@ -8,30 +8,29 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.everyones_sponsorship.databinding.ActivityChattingBinding
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.*
-import com.google.firebase.database.ktx.database
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
-class ChatModel (val users: HashMap<String, Boolean> = HashMap(),
-                 val comments : HashMap<String, Comment> = HashMap()){
-    class Comment(val uid: String? = null, val message: String? = null, val time: String? = null)
-}
 
-class ChattingActivity : AppCompatActivity() {
 
-    private val db = FirebaseDatabase.getInstance().getReference().push()
-    private val database = Firebase.database
-    private val databaseReference = database.getReference()
-//    private val fireDatabase = FirebaseDatabase.getInstance().reference
+class MessageActivity : AppCompatActivity() {
+
+    private val fireDatabase = FirebaseDatabase.getInstance().reference
     private var chatRoomUid : String? = null
     private var destinationUid : String? = null
     private var uid : String? = null
@@ -40,84 +39,51 @@ class ChattingActivity : AppCompatActivity() {
     @SuppressLint("SimpleDateFormat")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_message)
+        val imageView = findViewById<ImageView>(R.id.messageActivity_ImageView)
+        val editText = findViewById<TextView>(R.id.messageActivity_editText)
 
-        val binding = ActivityChattingBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        val imageView = findViewById<Button>(R.id.Button_send)
-        val editText = findViewById<TextView>(R.id.EditText_chat)
+        //메세지를 보낸 시간
         val time = System.currentTimeMillis()
         val dateFormat = SimpleDateFormat("MM월dd일 hh:mm")
         val curTime = dateFormat.format(Date(time)).toString()
 
-        uid = Firebase.auth.currentUser?.uid.toString()
-        recyclerView = findViewById(R.id.my_recycler_view)
         destinationUid = intent.getStringExtra("destinationUid")
+        uid = Firebase.auth.currentUser?.uid.toString()
+        recyclerView = findViewById(R.id.messageActivity_recyclerview)
 
-        imageView.setOnClickListener{
+        imageView.setOnClickListener {
+            Log.d("클릭 시 dest", "$destinationUid")
             val chatModel = ChatModel()
             chatModel.users.put(uid.toString(), true)
             chatModel.users.put(destinationUid!!, true)
-            val comment = ChatModel.Comment(uid, editText.text.toString(), curTime)
 
+            val comment = ChatModel.Comment(uid, editText.text.toString(), curTime)
             if(chatRoomUid == null){
                 imageView.isEnabled = false
-                databaseReference.child("chatrooms").push().setValue(chatModel).addOnSuccessListener {
+                fireDatabase.child("chatrooms").push().setValue(chatModel).addOnSuccessListener {
                     //채팅방 생성
                     checkChatRoom()
                     //메세지 보내기
                     Handler().postDelayed({
                         println(chatRoomUid)
-                        databaseReference.child("chatrooms").child(chatRoomUid.toString()).child("comments").push().setValue(comment)
+                        fireDatabase.child("chatrooms").child(chatRoomUid.toString()).child("comments").push().setValue(comment)
                         editText.text = null
                     }, 1000L)
                     Log.d("chatUidNull dest", "$destinationUid")
                 }
             }else{
-                databaseReference.child("chatrooms").child(chatRoomUid.toString()).child("comments").push().setValue(comment)
+                fireDatabase.child("chatrooms").child(chatRoomUid.toString()).child("comments").push().setValue(comment)
                 editText.text = null
                 Log.d("chatUidNotNull dest", "$destinationUid")
             }
-
-
-//            val name = Firebase.auth.currentUser
-//            val userId = name?.uid
-//            val userIdSt = userId.toString()
-//            val chat = ChatData(binding.EditTextChat.getText().toString(),userIdSt)
-//            if (chat != null){
-//                databaseReference.child("Chat").child("$userIdSt").push().setValue(chat)
-//            }
-//            binding.EditTextChat.setText("") // 입력창 초기화
-//
-//            var mRecyclerView = binding.myRecyclerView
-//            mRecyclerView.setHasFixedSize(true)
-//            mRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL ,false)
-//            //mRecyclerView.adapter =
-//            var listChat = arrayListOf<String>()
-//            val adapter = ArrayAdapter(this, R.layout.row_chat, listChat)
-//
-//            databaseReference.addChildEventListener(object : ChildEventListener {
-//                override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
-//                }
-//
-//                override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
-//                }
-//
-//                override fun onChildRemoved(snapshot: DataSnapshot) {
-//                }
-//
-//                override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
-//                }
-//
-//                override fun onCancelled(error: DatabaseError) {
-//                }
-//            })
         }
-        //checkChatRoom()
+        checkChatRoom()
     }
+
     private fun checkChatRoom(){
-        val imageView = findViewById<Button>(R.id.Button_send)
-        databaseReference.child("chatrooms").orderByChild("users/$uid").equalTo(true)
+        val imageView = findViewById<ImageView>(R.id.messageActivity_ImageView)
+        fireDatabase.child("chatrooms").orderByChild("users/$uid").equalTo(true)
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
                 }
@@ -128,20 +94,21 @@ class ChattingActivity : AppCompatActivity() {
                         if(chatModel?.users!!.containsKey(destinationUid)){
                             chatRoomUid = item.key
                             imageView.isEnabled = true
-                            recyclerView?.layoutManager = LinearLayoutManager(this@ChattingActivity)
-                            recyclerView?.adapter = RecyclerViewAdapter()
+                            recyclerView?.layoutManager = LinearLayoutManager(this@MessageActivity)
+                            recyclerView?.adapter = RecyclerViewAdapter2()
                         }
                     }
                 }
             })
     }
 
-    inner class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.MessageViewHolder>() {
-        val textView_topName = findViewById<TextView>(R.id.minsun)
+
+    inner class RecyclerViewAdapter2 : RecyclerView.Adapter<RecyclerViewAdapter2.MessageViewHolder>() {
+        val textView_topName = findViewById<TextView>(R.id.messageActivity_textView_topName)
         private val comments = ArrayList<ChatModel.Comment>()
         private var friend : Friend? = null
         init{
-            databaseReference.child("users").child(destinationUid.toString()).addListenerForSingleValueEvent(object : ValueEventListener{
+            fireDatabase.child("users").child(destinationUid.toString()).addListenerForSingleValueEvent(object : ValueEventListener{
                 override fun onCancelled(error: DatabaseError) {
                 }
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -153,7 +120,7 @@ class ChattingActivity : AppCompatActivity() {
         }
 
         fun getMessageList(){
-            databaseReference.child("chatrooms").child(chatRoomUid.toString()).child("comments").addValueEventListener(object : ValueEventListener{
+            fireDatabase.child("chatrooms").child(chatRoomUid.toString()).child("comments").addValueEventListener(object : ValueEventListener{
                 override fun onCancelled(error: DatabaseError) {
                 }
                 override fun onDataChange(snapshot: DataSnapshot) {

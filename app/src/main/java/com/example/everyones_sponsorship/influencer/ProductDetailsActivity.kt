@@ -18,7 +18,6 @@ import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_advertiser_main.*
-import kotlinx.android.synthetic.main.search_bar.view.*
 
 class ProductDetailsActivity : AppCompatActivity() {
     private lateinit var binding : ActivityProductinfoBinding

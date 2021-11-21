@@ -101,7 +101,7 @@ class ProfileEditActivity: AppCompatActivity() {
 
                 binding.name.setHint(name.toString())
                 binding.info.setHint(info.toString())
-                Picasso.get().load(Uri.parse(imageuri.toString())).fit().centerCrop().into(binding.profile)
+//                Picasso.get().load(Uri.parse(imageuri.toString())).fit().centerCrop().into(binding.profile)
                 binding.snsid.setHint(snsid.toString())
 
             }else{

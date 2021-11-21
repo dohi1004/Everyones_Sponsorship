@@ -15,11 +15,11 @@
         android:theme="@style/Theme.Everyones_Sponsorship">
 
         <activity android:name=".start.MainActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
 
         </activity>
         <activity android:name=".start.SplashActivity">
@@ -48,7 +48,9 @@
         <activity android:name=".advertiser.EditActivity"></activity>
         <activity android:name=".influencer.MyPageActivity"></activity>
         <activity android:name=".influencer.CategoryDetailsActivity"></activity>
-        <activity android:name=".ChatListActivity"></activity>
+        <activity android:name=".ChatListActivity">
+
+        </activity>
         <activity android:name=".influencer.ProfileEditActivity"></activity>
         <activity android:name=".advertiser.ProfileDetailsActivity"></activity>
         <activity android:name=".advertiser.InstagramActivity"></activity>

@@ -40,6 +40,7 @@ class MyAdapter(var c: Context, var applications: MutableList<Influencer>) : Rec
             intent.putExtra("snsid",application.sns)
             intent.putExtra("info",application.INFO)
             intent.putExtra("image",application.image)
+            intent.putExtra("uid",application.uid)
             c.startActivity(intent)
 
         }

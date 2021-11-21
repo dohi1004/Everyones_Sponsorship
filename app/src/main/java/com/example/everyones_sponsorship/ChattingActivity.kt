@@ -53,6 +53,7 @@ class ChattingActivity : AppCompatActivity() {
 
         uid = Firebase.auth.currentUser?.uid.toString()
         recyclerView = findViewById(R.id.my_recycler_view)
+        //destinationUid = "minseon"
         destinationUid = intent.getStringExtra("destinationUid")
 
         imageView.setOnClickListener{

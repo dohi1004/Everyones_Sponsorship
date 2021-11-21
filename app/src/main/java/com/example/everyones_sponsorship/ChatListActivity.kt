@@ -97,6 +97,7 @@ class ChatListActivity : AppCompatActivity() {
                     destinationUsers.add(destinationUid)
                 }
             }
+
             var identity: String? = null
             if (getIntent().getStringExtra("whoami")=="Advertisers")  identity="Influencers" else identity="Advertisers"
             fireDatabase.child("Users").child("$identity").child("$destinationUid").addListenerForSingleValueEvent(object :
@@ -105,11 +106,19 @@ class ChatListActivity : AppCompatActivity() {
                 }
 
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    val friend = snapshot.getValue<Friend>()
-                    Glide.with(holder.itemView.context).load(friend?.image) // friend?.image
+                    var strstr : String? = null
+                    var strimage : String? = null
+                    if (identity=="Influencers") {
+                        strstr = snapshot.getValue<Friend>()?.username
+                        strimage = snapshot.getValue<Friend>()?.image
+                    } else {
+                        strstr = snapshot.getValue<FriendAdvertisers>()?.username
+                        strimage = snapshot.getValue<FriendAdvertisers>()?.image
+                    }
+                    Glide.with(holder.itemView.context).load(strimage) // friend?.image
                         .apply(RequestOptions().circleCrop())
                         .into(holder.imageView)
-                    holder.textView_title.text = friend?.username
+                    holder.textView_title.text = strstr
                 }
             })
             //메세지 내림차순 정렬 후 마지막 메세지의 키값을 가져

@@ -110,13 +110,21 @@ class ChattingActivity : AppCompatActivity() {
         val textView_topName = findViewById<TextView>(R.id.minsun)
         private val comments = ArrayList<ChatModel.Comment>()
         private var friend : Friend? = null // 이부분 influencer나 advertiser dataclass로 연동 필요함
+        private var friendadv : FriendAdvertisers? = null
+        private var strstr : String? = null
         init{
-            databaseReference.child("Users").child("Influencers").child(destinationUid.toString()).addListenerForSingleValueEvent(object : ValueEventListener{
+            var identity: String? = null
+            if (getIntent().getStringExtra("whoami")=="Advertisers")  identity="Influencers" else identity="Advertisers"
+            databaseReference.child("Users").child("$identity").child(destinationUid.toString()).addListenerForSingleValueEvent(object : ValueEventListener{
                 override fun onCancelled(error: DatabaseError) {
                 }
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    friend = snapshot.getValue<Friend>()
-                    textView_topName.text = friend?.username
+                    if (identity=="Influencers") {
+                        strstr = snapshot.getValue<Friend>()?.username
+                    } else {
+                        strstr = snapshot.getValue<FriendAdvertisers>()?.username
+                    }
+                    textView_topName.text = strstr
                     getMessageList()
                 }
             })

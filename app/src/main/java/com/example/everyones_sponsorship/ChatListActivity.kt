@@ -99,7 +99,7 @@ class ChatListActivity : AppCompatActivity() {
             }
 
             var identity: String? = null
-            if (getIntent().getStringExtra("whoami")=="Advertisers")  identity="Influencers" else identity="Advertisers"
+            if (getIntent().getStringExtra("whoami")=="Advertisers")  identity = "Influencers" else identity = "Advertisers"
             fireDatabase.child("Users").child("$identity").child("$destinationUid").addListenerForSingleValueEvent(object :
                 ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {

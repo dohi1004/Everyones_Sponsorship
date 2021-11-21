@@ -91,7 +91,7 @@ class CategoryDetailsActivity : AppCompatActivity() {
         categoryrecyclerview.layoutManager = layoutManager
         categoryrecyclerview.adapter = InfluencerAdapter()
 
-        FirebaseDatabase.getInstance().getReference("/Posts").orderByChild("writeTime").addChildEventListener(object:
+        FirebaseDatabase.getInstance().getReference("/Posts").orderByChild("category").equalTo("$category").addChildEventListener(object:
             ChildEventListener {
             override fun onChildAdded(snapshot: DataSnapshot, prevChildKey: String?) {
                 snapshot?.let{

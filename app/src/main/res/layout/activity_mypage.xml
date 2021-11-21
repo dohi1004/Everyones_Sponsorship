@@ -26,8 +26,8 @@
                 android:id="@+id/imageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="center"
                 android:src="@drawable/mypage" />
 
             <LinearLayout
@@ -58,29 +58,42 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_marginTop="20dp">
-                    <Button
-                        android:id="@+id/editbtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="Edit"
-                        android:backgroundTint="@color/button"/>
+                    android:orientation="vertical">
 
-                    <Button
-                        android:id="@+id/influencer_logout"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="20dp"
+                        android:gravity="center"
+                        android:layout_marginTop="20dp">
+                        <Button
+                            android:id="@+id/editbtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Edit"
+                            android:backgroundTint="@color/button"/>
+
+                        <Button
+                            android:id="@+id/influencer_logout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="20dp"
+                            android:backgroundTint="@color/button"
+                            android:text="Log-out" />
+
+                    </LinearLayout>
+                    <Button
+                        android:id="@+id/withdrawl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginRight="25dp"
                         android:backgroundTint="@color/button"
-                        android:text="Log-out" />
-
+                        android:text="Withdrawl" />
 
                 </LinearLayout>
-
-
 
             </LinearLayout>
 
@@ -89,7 +102,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
             android:orientation="vertical">
 
             <TextView
@@ -111,6 +123,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">

@@ -1,7 +1,9 @@
 package com.example.everyones_sponsorship
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
@@ -94,17 +97,20 @@ class ChatListActivity : AppCompatActivity() {
                     destinationUsers.add(destinationUid)
                 }
             }
-            fireDatabase.child("users").child("$destinationUid").addListenerForSingleValueEvent(object :
+            var identity: String? = null
+            if (getIntent().getStringExtra("whoami")=="Advertisers")  identity="Influencers" else identity="Advertisers"
+            fireDatabase.child("Users").child("$identity").child("$destinationUid").addListenerForSingleValueEvent(object :
                 ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
                 }
 
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val friend = snapshot.getValue<Friend>()
-                    Glide.with(holder.itemView.context).load(friend?.profileImageUrl)
+                    val minsun = FirebaseStorage.getInstance().reference.child("images").child("IMAGE_20211119_154526_.png").downloadUrl
+                    Glide.with(holder.itemView.context).load(minsun.toString()) // friend?.image
                         .apply(RequestOptions().circleCrop())
                         .into(holder.imageView)
-                    holder.textView_title.text = friend?.name
+                    holder.textView_title.text = friend?.username
                 }
             })
             //메세지 내림차순 정렬 후 마지막 메세지의 키값을 가져

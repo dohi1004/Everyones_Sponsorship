@@ -149,6 +149,7 @@ class AdvertiserMainActivity : AppCompatActivity() {
         when(itemview){
             R.id.admenuchat -> {
                 val intent = Intent(this, ChatListActivity::class.java)
+                intent.putExtra("whoami","Advertisers")
                 startActivity(intent)
             }
         }

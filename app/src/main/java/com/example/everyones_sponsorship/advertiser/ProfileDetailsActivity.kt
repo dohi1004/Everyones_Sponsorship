@@ -33,7 +33,7 @@ class ProfileDetailsActivity : AppCompatActivity() {
         val snsid = intent.getStringExtra("snsid")
         val info = intent.getStringExtra("info")
         val image = intent.getStringExtra("image")
-        val uid = intent.getStringArrayExtra("uid")
+        val uid = intent.getStringExtra("uid")
 
         binding.backbtn.setOnClickListener {
             val intent = Intent(this,AdvertiserApplicationActivity::class.java)
@@ -45,9 +45,8 @@ class ProfileDetailsActivity : AppCompatActivity() {
         binding.chatbtn.setOnClickListener {
             // var adv_uid = Firebase.auth.currentUser?.uid.toString() // advertiser의 user id
             var inf_uid = uid
-            var ms = "ntFl6D41tedQopUqE9OP11cFTuu1"
             val intent = Intent(this@ProfileDetailsActivity, ChattingActivity::class.java)
-            intent.putExtra("destinationUid", ms)
+            intent.putExtra("destinationUid", inf_uid)
             startActivity(intent)
         }
 

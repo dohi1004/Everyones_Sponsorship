@@ -117,10 +117,10 @@ class ChatFragment : Fragment() {
 
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val friend = snapshot.getValue<Friend>()
-                    Glide.with(holder.itemView.context).load(friend?.profileImageUrl)
+                    Glide.with(holder.itemView.context).load(friend?.image)
                         .apply(RequestOptions().circleCrop())
                         .into(holder.imageView)
-                    holder.textView_title.text = friend?.name
+                    holder.textView_title.text = friend?.username
                 }
             })
             //메세지 내림차순 정렬 후 마지막 메세지의 키값을 가져

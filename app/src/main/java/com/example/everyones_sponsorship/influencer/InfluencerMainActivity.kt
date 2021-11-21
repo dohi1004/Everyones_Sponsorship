@@ -143,6 +143,7 @@ class InfluencerMainActivity : AppCompatActivity() {
         when(itemview){
             R.id.chat -> {
                 val intent = Intent(this, ChatListActivity::class.java)
+                intent.putExtra("whoami","Influencers")
                 startActivity(intent)
             }
             R.id.categorymenu -> {

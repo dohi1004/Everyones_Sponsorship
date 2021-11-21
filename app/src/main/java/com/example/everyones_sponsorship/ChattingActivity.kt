@@ -12,6 +12,8 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.example.everyones_sponsorship.databinding.ActivityChattingBinding
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
@@ -148,7 +150,7 @@ class ChattingActivity : AppCompatActivity() {
                 }
                 override fun onDataChange(snapshot: DataSnapshot) {
                     friend = snapshot.getValue<Friend>()
-                    textView_topName.text = friend?.name
+                    textView_topName.text = friend?.username
                     getMessageList()
                 }
             })
@@ -173,7 +175,7 @@ class ChattingActivity : AppCompatActivity() {
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
-            val view : View = LayoutInflater.from(parent.context).inflate(R.layout.item_message, parent, false)
+            val view : View = LayoutInflater.from(parent.context).inflate(R.layout.item_chat, parent, false)
 
             return MessageViewHolder(view)
         }
@@ -183,19 +185,19 @@ class ChattingActivity : AppCompatActivity() {
             holder.textView_message.text = comments[position].message
             holder.textView_time.text = comments[position].time
             if(comments[position].uid.equals(uid)){ // 본인 채팅
-                //holder.textView_message.setBackgroundResource(R.drawable.rightbubble)
+//                holder.textView_message.setBackgroundResource(R.drawable.rightbubble)
                 holder.textView_name.visibility = View.INVISIBLE
-//                holder.layout_destination.visibility = View.INVISIBLE
+                holder.layout_destination.visibility = View.INVISIBLE
                 holder.layout_main.gravity = Gravity.RIGHT
             }else{ // 상대방 채팅
-//                Glide.with(holder.itemView.context)
-//                    .load(friend?.profileImageUrl)
-//                    .apply(RequestOptions().circleCrop())
-//                    .into(holder.imageView_profile)
-                holder.textView_name.text = friend?.name
-//                holder.layout_destination.visibility = View.VISIBLE
+                Glide.with(holder.itemView.context)
+                    .load(friend?.image)
+                    .apply(RequestOptions().circleCrop())
+                    .into(holder.imageView_profile)
+                holder.textView_name.text = friend?.username
+                holder.layout_destination.visibility = View.VISIBLE
                 holder.textView_name.visibility = View.VISIBLE
-                //holder.textView_message.setBackgroundResource(R.drawable.leftbubble)
+//                holder.textView_message.setBackgroundResource(R.drawable.leftbubble)
                 holder.layout_main.gravity = Gravity.LEFT
             }
         }

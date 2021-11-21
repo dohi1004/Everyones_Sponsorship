@@ -46,6 +46,8 @@ import java.text.SimpleDateFormat
 import java.util.*
 class PostModel (val posts: HashMap<String, Boolean> = HashMap())
 class MyPageActivity : AppCompatActivity() {
+    private lateinit var firebaseAuth: FirebaseAuth
+
     var postlists : ArrayList<String> = arrayListOf()
     private lateinit var binding: ActivityMypageBinding
     val posts: MutableList<Post> = mutableListOf()
@@ -56,6 +58,8 @@ class MyPageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMypageBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        firebaseAuth = FirebaseAuth.getInstance()
+
 
         binding.home.setOnClickListener {
             database = FirebaseDatabase.getInstance().getReference("/Users/Influencers/$uid")
@@ -88,8 +92,24 @@ class MyPageActivity : AppCompatActivity() {
             val yesbtn = mDialogView.findViewById<Button>(R.id.yes)
             yesbtn.setOnClickListener {
 
+                database = FirebaseDatabase.getInstance().getReference("Users")
+                database.child("Influencers/$uid").removeValue().addOnSuccessListener{}.addOnFailureListener{}
+                //////////////////////////
+                database.child("Posts").orderByChild("Applications/$uid/uid").equalTo("$uid").get().addOnSuccessListener {
+                    val postId = it.child("postId").getValue().toString()
+                    Toast.makeText(this, "$postId", Toast.LENGTH_SHORT).show()
+                    database.child("Posts/$postId/Applications/$uid").removeValue().addOnSuccessListener{}.addOnFailureListener{}
+                }
+                //////////////////////////////////
+                revokeAccess()
+                mAlertDialog.dismiss()
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+                //finishAffinity()
             }
         }
+
 
         binding.search.setOnClickListener {
             val intent = Intent(this, SearchActivity::class.java)
@@ -188,6 +208,10 @@ class MyPageActivity : AppCompatActivity() {
                 }
             })
 
+    }
+
+    private fun revokeAccess() {
+        firebaseAuth.getCurrentUser()?.delete()
     }
 
     private fun readData(uid : String){

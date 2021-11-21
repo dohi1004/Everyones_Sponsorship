@@ -31,152 +31,151 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class SearchresultActivity : AppCompatActivity() {
-//    private lateinit var  binding : ActivitySearchresultBinding
-//    val posts : MutableList<Post> = mutableListOf()
+    val posts : MutableList<Post> = mutableListOf()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         var binding = ActivitySearchresultBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        val searchname = getIntent().getStringExtra("searchname")
-//        val layoutManager = LinearLayoutManager(this)
+        val searchname = getIntent().getStringExtra("text")
+        val layoutManager = LinearLayoutManager(this)
 
-//        layoutManager.reverseLayout = true
-//        layoutManager.stackFromEnd = true
-//        serachrecyclerview.layoutManager = layoutManager
-//        serachrecyclerview.adapter = InfluencerAdapter()
-//
-//        FirebaseDatabase.getInstance().getReference("/Posts").orderByChild("Applications/productname").equalTo("$searchname").addChildEventListener(object:
-//            ChildEventListener {
-//            override fun onChildAdded(snapshot: DataSnapshot, prevChildKey: String?) {
-//                snapshot?.let{
-//                        snapshot ->
-//                    val post = snapshot.getValue(Post::class.java)
-//                    post?.let{
-//                        if(prevChildKey == null){
-//                            posts.add(it)
-//                            serachrecyclerview.adapter?.notifyItemInserted(posts.size-1)
-//                        }else{
-//                            val prevIndex = posts.map{it.postId}.indexOf(prevChildKey)
-//                            posts.add(prevIndex+1, post)
-//                            serachrecyclerview.adapter?.notifyItemInserted(prevIndex+1)
-//                        }
-//
-//                    }
-//                }
-//            }
-//
-//            override fun onChildChanged(snapshot: DataSnapshot, prevChildKey: String?) {
-//                snapshot?.let{
-//                    val post = snapshot.getValue(Post::class.java)
-//                    post?.let{
-//                        val prevIndex = posts.map{it.postId}.indexOf(prevChildKey)
-//                        posts[prevIndex + 1] = post
-//                        serachrecyclerview.adapter?.notifyItemChanged(prevIndex+1)
-//                    }
-//                }
-//            }
-//
-//            override fun onChildMoved(snapshot: DataSnapshot, prevChildKey: String?) {
-//                snapshot?.let{
-//                    val post = snapshot.getValue(Post::class.java)
-//
-//                    post?.let{
-//                        val existIndex = posts.map{it.postId}.indexOf(post.postId)
-//                        posts.removeAt(existIndex)
-//                        serachrecyclerview.adapter?.notifyItemRemoved(existIndex)
-//
-//                        if(prevChildKey == null){
-//                            posts.add(post)
-//                            serachrecyclerview.adapter?.notifyItemChanged(posts.size-1)
-//                        }else{
-//                            val prevIndex = posts.map{it.postId}.indexOf(prevChildKey)
-//                            posts.add(prevIndex+1,post)
-//                            serachrecyclerview.adapter?.notifyItemChanged(prevIndex+1)
-//                        }
-//                    }
-//                }
-//            }
-//
-//            override fun onChildRemoved(snapshot: DataSnapshot) {
-//                snapshot?.let{
-//                    val post = snapshot.getValue(Post::class.java)
-//                    post?.let{post->
-//                        val existIndex = posts.map{it.postId}.indexOf(post.postId)
-//                        posts.removeAt(existIndex)
-//                        serachrecyclerview.adapter?.notifyItemRemoved(existIndex)
-//                    }
-//                }
-//            }
-//
-//            override fun onCancelled(error: DatabaseError) {
-//                error?.toException()?.printStackTrace()
-//            }
-//        })
-//
-//    }
-//
-//    inner class InfluencerViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
-//        val imageView : ImageView = itemView.productimage
-//        val contentsText : TextView = itemView.productname
-//        val timeTextView : TextView = itemView.timediff
-//        val who : TextView = itemView.writers
-//
-//    }
-//
-//    inner class InfluencerAdapter: RecyclerView.Adapter<InfluencerViewHolder>(){
-//        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InfluencerViewHolder {
-//            return InfluencerViewHolder(LayoutInflater.from(this@SearchresultActivity).inflate(R.layout.posts,parent,false))
-//        }
-//
-//        override fun getItemCount(): Int {
-//            return posts.size
-//        }
-//
-//        override fun onBindViewHolder(holder: InfluencerViewHolder, position: Int) {
-//            val post = posts[position]
-//            Picasso.get().load(Uri.parse(post.image)).fit().centerCrop().into(holder.imageView)
-//            holder.contentsText.text = post.productname
-//            holder.who.text = post.postId
-//            holder.timeTextView.text= getDiffTimeText(post.writeTime as Long)
-//            // recylcer view item 클릭 시
-//            holder.itemView.setOnClickListener {
-//                intent.putExtra("postId",post.postId)
-//                val intent = Intent(this@SearchresultActivity, ProductDetailsActivity::class.java)
-//                startActivity(intent)
-//            }
-//        }
-//
-//        fun getDiffTimeText(targetTime: Long) : String{
-//            val curDateTime = DateTime()
-//            val targetDateTime = DateTime().withMillis(targetTime)
-//            val diffDay = Days.daysBetween(curDateTime, targetDateTime).days
-//            val diffHours = Hours.hoursBetween(targetDateTime, curDateTime).hours
-//            val diffMinutes = Minutes.minutesBetween(targetDateTime, curDateTime).minutes
-//
-//            if(diffDay == 0){
-//                if(diffHours == 0 && diffMinutes == 0){
-//                    return "Just before"
-//                }
-//                return if (diffHours > 0){
-//                    if(diffHours == 1){
-//                        " "+ diffHours + "hour ago"
-//                    }
-//                    else{"" + diffHours + "hours ago"}
-//                }else{
-//                    if(diffMinutes == 1) {
-//                        ""+diffMinutes+"minutes ago"
-//                    }
-//                    else{
-//                        ""+diffMinutes+"minutes ago"
-//                    }
-//                }
-//            }else{
-//                val format = SimpleDateFormat("yyyy.MM.DD.HH")
-//                return format.format(Date(targetTime))
-//            }
-//
-//        }
+        layoutManager.reverseLayout = true
+        layoutManager.stackFromEnd = true
+        serachrecyclerview.layoutManager = layoutManager
+        serachrecyclerview.adapter = InfluencerAdapter()
+
+        FirebaseDatabase.getInstance().getReference("/Posts").orderByChild("productname").equalTo("$searchname").addChildEventListener(object:
+            ChildEventListener {
+            override fun onChildAdded(snapshot: DataSnapshot, prevChildKey: String?) {
+                snapshot?.let{
+                        snapshot ->
+                    val post = snapshot.getValue(Post::class.java)
+                    post?.let{
+                        if(prevChildKey == null){
+                            posts.add(it)
+                            serachrecyclerview.adapter?.notifyItemInserted(posts.size-1)
+                        }else{
+                            val prevIndex = posts.map{it.postId}.indexOf(prevChildKey)
+                            posts.add(prevIndex+1, post)
+                            serachrecyclerview.adapter?.notifyItemInserted(prevIndex+1)
+                        }
+
+                    }
+                }
+            }
+
+            override fun onChildChanged(snapshot: DataSnapshot, prevChildKey: String?) {
+                snapshot?.let{
+                    val post = snapshot.getValue(Post::class.java)
+                    post?.let{
+                        val prevIndex = posts.map{it.postId}.indexOf(prevChildKey)
+                        posts[prevIndex + 1] = post
+                        serachrecyclerview.adapter?.notifyItemChanged(prevIndex+1)
+                    }
+                }
+            }
+
+            override fun onChildMoved(snapshot: DataSnapshot, prevChildKey: String?) {
+                snapshot?.let{
+                    val post = snapshot.getValue(Post::class.java)
+
+                    post?.let{
+                        val existIndex = posts.map{it.postId}.indexOf(post.postId)
+                        posts.removeAt(existIndex)
+                        serachrecyclerview.adapter?.notifyItemRemoved(existIndex)
+
+                        if(prevChildKey == null){
+                            posts.add(post)
+                            serachrecyclerview.adapter?.notifyItemChanged(posts.size-1)
+                        }else{
+                            val prevIndex = posts.map{it.postId}.indexOf(prevChildKey)
+                            posts.add(prevIndex+1,post)
+                            serachrecyclerview.adapter?.notifyItemChanged(prevIndex+1)
+                        }
+                    }
+                }
+            }
+
+            override fun onChildRemoved(snapshot: DataSnapshot) {
+                snapshot?.let{
+                    val post = snapshot.getValue(Post::class.java)
+                    post?.let{post->
+                        val existIndex = posts.map{it.postId}.indexOf(post.postId)
+                        posts.removeAt(existIndex)
+                        serachrecyclerview.adapter?.notifyItemRemoved(existIndex)
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                error?.toException()?.printStackTrace()
+            }
+        })
+
+    }
+
+    inner class InfluencerViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
+        val imageView : ImageView = itemView.productimage
+        val contentsText : TextView = itemView.productname
+        val timeTextView : TextView = itemView.timediff
+        val who : TextView = itemView.writers
+
+    }
+
+    inner class InfluencerAdapter: RecyclerView.Adapter<InfluencerViewHolder>(){
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InfluencerViewHolder {
+            return InfluencerViewHolder(LayoutInflater.from(this@SearchresultActivity).inflate(R.layout.posts,parent,false))
+        }
+
+        override fun getItemCount(): Int {
+            return posts.size
+        }
+
+        override fun onBindViewHolder(holder: InfluencerViewHolder, position: Int) {
+            val post = posts[position]
+            Picasso.get().load(Uri.parse(post.image)).fit().centerCrop().into(holder.imageView)
+            holder.contentsText.text = post.productname
+            holder.who.text = post.postId
+            holder.timeTextView.text= getDiffTimeText(post.writeTime as Long)
+            // recylcer view item 클릭 시
+            holder.itemView.setOnClickListener {
+                intent.putExtra("postId",post.postId)
+                val intent = Intent(this@SearchresultActivity, ProductDetailsActivity::class.java)
+                startActivity(intent)
+            }
+        }
+
+        fun getDiffTimeText(targetTime: Long) : String{
+            val curDateTime = DateTime()
+            val targetDateTime = DateTime().withMillis(targetTime)
+            val diffDay = Days.daysBetween(curDateTime, targetDateTime).days
+            val diffHours = Hours.hoursBetween(targetDateTime, curDateTime).hours
+            val diffMinutes = Minutes.minutesBetween(targetDateTime, curDateTime).minutes
+
+            if(diffDay == 0){
+                if(diffHours == 0 && diffMinutes == 0){
+                    return "Just before"
+                }
+                return if (diffHours > 0){
+                    if(diffHours == 1){
+                        " "+ diffHours + "hour ago"
+                    }
+                    else{"" + diffHours + "hours ago"}
+                }else{
+                    if(diffMinutes == 1) {
+                        ""+diffMinutes+"minutes ago"
+                    }
+                    else{
+                        ""+diffMinutes+"minutes ago"
+                    }
+                }
+            }else{
+                val format = SimpleDateFormat("yyyy.MM.DD.HH")
+                return format.format(Date(targetTime))
+            }
+
+        }
 
 
     }

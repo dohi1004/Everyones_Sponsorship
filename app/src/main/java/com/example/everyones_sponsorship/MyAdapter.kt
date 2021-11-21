@@ -36,7 +36,7 @@ class MyAdapter(var c: Context, var applications: MutableList<Influencer>) : Rec
         holder.itemView.setOnClickListener {
             val intent = Intent(c, ProfileDetailsActivity::class.java)
             intent.putExtra("name",application.username)
-            intent.putExtra("rating",application.rating)
+            intent.putExtra("rating",application.rating.toString())
             intent.putExtra("snsid",application.sns)
             intent.putExtra("info",application.INFO)
             intent.putExtra("image",application.image)

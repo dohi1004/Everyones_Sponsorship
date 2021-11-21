@@ -68,7 +68,6 @@ class AdvertiserApplicationActivity : AppCompatActivity() {
                         val existIndex = applications.map{it.uid}.indexOf(influencer.uid)
                         applications.removeAt(existIndex)
                         recyclerview.adapter?.notifyItemRemoved(existIndex)
-
                         if(prevChildKey == null){
                             applications.add(influencer)
                             recyclerview.adapter?.notifyItemChanged(applications.size-1)

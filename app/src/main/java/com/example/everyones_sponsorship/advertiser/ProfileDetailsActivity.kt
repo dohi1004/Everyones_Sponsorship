@@ -3,6 +3,7 @@ package com.example.everyones_sponsorship.advertiser
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.everyones_sponsorship.ChatModel
@@ -27,9 +28,8 @@ class ProfileDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivityProfileDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        val name = intent.getStringExtra("name")
         val rating = intent.getStringExtra("rating")
+        val name = intent.getStringExtra("name")
         val snsid = intent.getStringExtra("snsid")
         val info = intent.getStringExtra("info")
         val image = intent.getStringExtra("image")
@@ -38,6 +38,7 @@ class ProfileDetailsActivity : AppCompatActivity() {
         binding.backbtn.setOnClickListener {
             val intent = Intent(this,AdvertiserApplicationActivity::class.java)
             startActivity(intent)
+            Toast.makeText(this, "rating: $rating,name: $name, $snsid, $info, uid: $uid", Toast.LENGTH_SHORT).show()
             finish()
         }
 
@@ -57,6 +58,6 @@ class ProfileDetailsActivity : AppCompatActivity() {
             intent.putExtra("sns",snsid)
             startActivity(intent)
         }
-//        Picasso.get().load(Uri.parse(image.toString())).fit().centerCrop().into(binding.image)
+        Picasso.get().load(Uri.parse(image.toString())).fit().centerCrop().into(binding.image)
     }
 }

@@ -54,6 +54,8 @@
         <activity android:name=".influencer.ProfileEditActivity"></activity>
         <activity android:name=".advertiser.ProfileDetailsActivity"></activity>
         <activity android:name=".advertiser.InstagramActivity"></activity>
+        <activity android:name=".influencer.SearchresultActivity"></activity>
+
     </application>
 
 </manifest>

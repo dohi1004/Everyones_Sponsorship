@@ -34,7 +34,7 @@ class ChattingActivity : AppCompatActivity() {
     private val db = FirebaseDatabase.getInstance().getReference().push()
     private val database = Firebase.database
     private val databaseReference = database.getReference()
-//    private val fireDatabase = FirebaseDatabase.getInstance().reference
+    //    private val fireDatabase = FirebaseDatabase.getInstance().reference
     private var chatRoomUid : String? = null
     private var destinationUid : String? = null
     private var uid : String? = null
@@ -82,42 +82,8 @@ class ChattingActivity : AppCompatActivity() {
                 editText.text = null
                 Log.d("chatUidNotNull dest", "$destinationUid")
             }
-
-
-//            val name = Firebase.auth.currentUser
-//            val userId = name?.uid
-//            val userIdSt = userId.toString()
-//            val chat = ChatData(binding.EditTextChat.getText().toString(),userIdSt)
-//            if (chat != null){
-//                databaseReference.child("Chat").child("$userIdSt").push().setValue(chat)
-//            }
-//            binding.EditTextChat.setText("") // 입력창 초기화
-//
-//            var mRecyclerView = binding.myRecyclerView
-//            mRecyclerView.setHasFixedSize(true)
-//            mRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL ,false)
-//            //mRecyclerView.adapter =
-//            var listChat = arrayListOf<String>()
-//            val adapter = ArrayAdapter(this, R.layout.row_chat, listChat)
-//
-//            databaseReference.addChildEventListener(object : ChildEventListener {
-//                override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
-//                }
-//
-//                override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
-//                }
-//
-//                override fun onChildRemoved(snapshot: DataSnapshot) {
-//                }
-//
-//                override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
-//                }
-//
-//                override fun onCancelled(error: DatabaseError) {
-//                }
-//            })
         }
-        //checkChatRoom()
+        checkChatRoom()
     }
     private fun checkChatRoom(){
         val imageView = findViewById<Button>(R.id.Button_send)
@@ -145,7 +111,7 @@ class ChattingActivity : AppCompatActivity() {
         private val comments = ArrayList<ChatModel.Comment>()
         private var friend : Friend? = null // 이부분 influencer나 advertiser dataclass로 연동 필요함
         init{
-            databaseReference.child("users").child(destinationUid.toString()).addListenerForSingleValueEvent(object : ValueEventListener{
+            databaseReference.child("Users").child("Influencers").child(destinationUid.toString()).addListenerForSingleValueEvent(object : ValueEventListener{
                 override fun onCancelled(error: DatabaseError) {
                 }
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -175,7 +141,7 @@ class ChattingActivity : AppCompatActivity() {
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
-            val view : View = LayoutInflater.from(parent.context).inflate(R.layout.item_chat, parent, false)
+            val view : View = LayoutInflater.from(parent.context).inflate(R.layout.item_message, parent, false)
 
             return MessageViewHolder(view)
         }
@@ -185,7 +151,7 @@ class ChattingActivity : AppCompatActivity() {
             holder.textView_message.text = comments[position].message
             holder.textView_time.text = comments[position].time
             if(comments[position].uid.equals(uid)){ // 본인 채팅
-//                holder.textView_message.setBackgroundResource(R.drawable.rightbubble)
+                //holder.textView_message.setBackgroundResource(R.drawable.rightbubble)
                 holder.textView_name.visibility = View.INVISIBLE
                 holder.layout_destination.visibility = View.INVISIBLE
                 holder.layout_main.gravity = Gravity.RIGHT
@@ -197,7 +163,7 @@ class ChattingActivity : AppCompatActivity() {
                 holder.textView_name.text = friend?.username
                 holder.layout_destination.visibility = View.VISIBLE
                 holder.textView_name.visibility = View.VISIBLE
-//                holder.textView_message.setBackgroundResource(R.drawable.leftbubble)
+                //holder.textView_message.setBackgroundResource(R.drawable.leftbubble)
                 holder.layout_main.gravity = Gravity.LEFT
             }
         }

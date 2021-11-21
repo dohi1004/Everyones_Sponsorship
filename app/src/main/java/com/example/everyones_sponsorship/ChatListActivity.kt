@@ -106,8 +106,7 @@ class ChatListActivity : AppCompatActivity() {
 
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val friend = snapshot.getValue<Friend>()
-                    val minsun = FirebaseStorage.getInstance().reference.child("images").child("IMAGE_20211119_154526_.png").downloadUrl
-                    Glide.with(holder.itemView.context).load(minsun.toString()) // friend?.image
+                    Glide.with(holder.itemView.context).load(friend?.image) // friend?.image
                         .apply(RequestOptions().circleCrop())
                         .into(holder.imageView)
                     holder.textView_title.text = friend?.username

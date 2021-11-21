@@ -11,7 +11,7 @@
         android:label="InfluencerMainActivity" />
     <activity
         android:id="@+id/chattingActivity"
-        android:name="com.example.everyones_sponsorship.ChattingActivity"
+        android:name="com.example.everyones_sponsorship.chat.ChattingActivity"
         android:label="ChattingActivity" />
     <activity
         android:id="@+id/searchActivity"

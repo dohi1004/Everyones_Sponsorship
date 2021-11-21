@@ -3,7 +3,7 @@ package com.example.everyones_sponsorship
 class Post {
     var postId = ""
     var productname = ""
-//    var writeId = ""
+    var writeId = ""
     var message = ""
     var writeTime:Any = Any()
     var image = ""

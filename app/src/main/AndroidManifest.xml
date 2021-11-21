@@ -38,7 +38,7 @@
 
         </activity>
         <activity android:name=".advertiser.AdvertiserApplicationActivity"></activity>
-        <activity android:name=".ChattingActivity">
+        <activity android:name=".chat.ChattingActivity">
 
         </activity>
         <activity android:name=".advertiser.AddPhotoActivity"></activity>
@@ -48,7 +48,7 @@
         <activity android:name=".advertiser.EditActivity"></activity>
         <activity android:name=".influencer.MyPageActivity"></activity>
         <activity android:name=".influencer.CategoryDetailsActivity"></activity>
-        <activity android:name=".ChatListActivity">
+        <activity android:name=".chat.ChatListActivity">
 
         </activity>
         <activity android:name=".influencer.ProfileEditActivity"></activity>

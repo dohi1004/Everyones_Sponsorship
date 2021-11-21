@@ -1,4 +1,4 @@
-package com.example.everyones_sponsorship
+package com.example.everyones_sponsorship.chat
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -14,6 +14,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.example.everyones_sponsorship.Friend
+import com.example.everyones_sponsorship.FriendAdvertisers
+import com.example.everyones_sponsorship.R
 import com.example.everyones_sponsorship.databinding.ActivityChattingBinding
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*

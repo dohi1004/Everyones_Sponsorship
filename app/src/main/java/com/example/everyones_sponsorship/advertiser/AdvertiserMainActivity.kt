@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.everyones_sponsorship.*
 import com.example.everyones_sponsorship.R
+import com.example.everyones_sponsorship.chat.ChatListActivity
 import com.example.everyones_sponsorship.databinding.ActivityAdvertiserMainBinding
 import com.example.everyones_sponsorship.start.MainActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -69,7 +70,8 @@ class AdvertiserMainActivity : AppCompatActivity() {
 
 // 여기서 자기가 올린거에 해당하는 거만 불러오게 만들기!! ( 지금 이거는 influencer에 똑같이 적용하면 될듯)
 
-    FirebaseDatabase.getInstance().getReference("/Posts").orderByChild("writeTime").addChildEventListener(object: ChildEventListener{
+        FirebaseDatabase.getInstance().getReference("/Posts").orderByChild("writeId").equalTo(userId).addChildEventListener(object:
+            ChildEventListener {
         override fun onChildAdded(snapshot: DataSnapshot, prevChildKey: String?) {
             snapshot?.let{
                 snapshot ->

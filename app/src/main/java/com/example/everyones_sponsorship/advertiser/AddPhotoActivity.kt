@@ -27,6 +27,7 @@ class AddPhotoActivity : AppCompatActivity() {
     var photoUri : Uri? = null
     var auth : FirebaseAuth? = null
     var firestore : FirebaseFirestore? = null
+    val uid =  FirebaseAuth.getInstance().currentUser!!.uid
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityAddPhotoBinding.inflate(layoutInflater)
@@ -177,6 +178,7 @@ class AddPhotoActivity : AppCompatActivity() {
         post.writeTime = ServerValue.TIMESTAMP
         post.rating = rating
         post.category = category
+        post.writeId = uid
 
         database.setValue(post)
         Toast.makeText(this, "Upload complete", Toast.LENGTH_SHORT).show()

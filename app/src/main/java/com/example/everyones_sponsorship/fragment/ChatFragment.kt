@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.example.everyones_sponsorship.ChattingActivity
+import com.example.everyones_sponsorship.chat.ChattingActivity
 import com.example.everyones_sponsorship.Friend
 import com.example.everyones_sponsorship.R
 import com.google.firebase.auth.ktx.auth

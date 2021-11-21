@@ -3,6 +3,7 @@ package com.example.everyones_sponsorship.influencer
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Button
@@ -81,15 +82,13 @@ class ProductDetailsActivity : AppCompatActivity() {
                         }.addOnFailureListener {
                             Toast.makeText(this, "Application fail", Toast.LENGTH_SHORT).show()
                         }
+
+                        val influencerpost = PostModel()
+                        influencerpost.posts.put(postId.toString(),true)
 //                         신청 리스트 만들려면 필요..
-                        FirebaseDatabase.getInstance().getReference("/Users/Influencers/$userId/Applications").child(
-                            postId.toString()
-                        ).setValue("yes").addOnSuccessListener {
-                        }.addOnFailureListener {
-                            Toast.makeText(this, "Application fail", Toast.LENGTH_SHORT).show()
-                        }
-
-
+                        FirebaseDatabase.getInstance().getReference("Users/Influencers/$userId/Applications").push().setValue(influencerpost)
+                            .addOnSuccessListener {}.addOnFailureListener {
+                            }
                     }else{
                     }
                 }.addOnFailureListener {

@@ -75,6 +75,22 @@ class MyPageActivity : AppCompatActivity() {
             finish()
         }
 
+        binding.withdrawl.setOnClickListener {
+            val mDialogView = LayoutInflater.from(this@MyPageActivity).inflate(R.layout.dialog_withdrawl_check, null)
+            val mBuilder = AlertDialog.Builder(this@MyPageActivity)
+                .setView(mDialogView)
+            val mAlertDialog = mBuilder.show()
+
+            val nobtn = mDialogView.findViewById<Button>(R.id.no)
+            nobtn.setOnClickListener {
+                mAlertDialog.dismiss()
+            }
+            val yesbtn = mDialogView.findViewById<Button>(R.id.yes)
+            yesbtn.setOnClickListener {
+
+            }
+        }
+
         binding.search.setOnClickListener {
             val intent = Intent(this, SearchActivity::class.java)
             startActivity(intent)

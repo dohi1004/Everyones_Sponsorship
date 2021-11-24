@@ -16,7 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Everyones_Sponsorship">
-
+        <activity
+            android:name=".advertiser.EditprofileAdvertiser"></activity>
         <activity android:name=".start.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,13 +25,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".start.SplashActivity"></activity>
+        <activity android:name=".start.SplashActivity" />
         <activity android:name=".start.SignAdvertiserActivity" />
-        <activity android:name=".start.SignInfluencerActivity"></activity>
-        <activity android:name=".influencer.InfluencerMainActivity"></activity>
-        <activity android:name=".advertiser.AdvertiserMainActivity"></activity>
+        <activity android:name=".start.SignInfluencerActivity" />
+        <activity android:name=".influencer.InfluencerMainActivity" />
+        <activity android:name=".advertiser.AdvertiserMainActivity" />
         <activity android:name=".advertiser.AdvertiserApplicationActivity" />
-        <activity android:name=".chat.ChattingActivity"></activity>
+        <activity android:name=".chat.ChattingActivity" />
         <activity android:name=".advertiser.AddPhotoActivity" />
         <activity android:name=".influencer.SearchActivity" />
         <activity android:name=".influencer.CategoryActivity" />
@@ -38,13 +39,13 @@
         <activity android:name=".advertiser.EditActivity" />
         <activity android:name=".influencer.MyPageActivity" />
         <activity android:name=".influencer.CategoryDetailsActivity" />
-        <activity android:name=".chat.ChatListActivity"></activity>
-        <activity android:name=".advertiser.EditprofileAdvertiser" />
+        <activity android:name=".chat.ChatListActivity" />
         <activity android:name=".influencer.ProfileEditActivity" />
         <activity android:name=".advertiser.ProfileDetailsActivity" />
         <activity android:name=".advertiser.InstagramActivity" />
         <activity android:name=".influencer.SearchresultActivity" />
         <activity android:name=".influencer.ReviewActivity" />
+        <activity android:name=".influencer.ReviewListActivity" />
     </application>
 
 </manifest>

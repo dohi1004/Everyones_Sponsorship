@@ -60,6 +60,11 @@ class AdvertiserMainActivity : AppCompatActivity() {
             finish()
         }
 
+        binding.editAdvertiser.setOnClickListener{
+            val intent = Intent(this, EditprofileAdvertiser::class.java)
+            startActivity(intent)
+        }
+
     val layoutManager = LinearLayoutManager(this@AdvertiserMainActivity)
 
         layoutManager.reverseLayout = true

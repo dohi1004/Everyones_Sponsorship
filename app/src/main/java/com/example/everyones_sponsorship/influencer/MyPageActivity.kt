@@ -44,11 +44,10 @@ import org.joda.time.Hours
 import org.joda.time.Minutes
 import java.text.SimpleDateFormat
 import java.util.*
-class PostModel (val posts: HashMap<String, Boolean> = HashMap())
+//class PostModel (val posts: HashMap<String, Boolean> = HashMap())
 class MyPageActivity : AppCompatActivity() {
     private lateinit var firebaseAuth: FirebaseAuth
-
-    var postlists : ArrayList<String> = arrayListOf()
+    var postlists : MutableList<Post> = mutableListOf()
     private lateinit var binding: ActivityMypageBinding
     val posts: MutableList<Post> = mutableListOf()
     inner class application(val postid: String? = null)
@@ -90,23 +89,26 @@ class MyPageActivity : AppCompatActivity() {
                 mAlertDialog.dismiss()
             }
             val yesbtn = mDialogView.findViewById<Button>(R.id.yes)
+
             yesbtn.setOnClickListener {
 
                 database = FirebaseDatabase.getInstance().getReference("Users")
                 database.child("Influencers/$uid").removeValue().addOnSuccessListener{}.addOnFailureListener{}
-                //////////////////////////
-                database.child("Posts").orderByChild("Applications/$uid/uid").equalTo("$uid").get().addOnSuccessListener {
-                    val postId = it.child("postId").getValue().toString()
-                    Toast.makeText(this, "$postId", Toast.LENGTH_SHORT).show()
-                    database.child("Posts/$postId/Applications/$uid").removeValue().addOnSuccessListener{}.addOnFailureListener{}
+
+                FirebaseDatabase.getInstance().getReference("Posts").orderByChild("Applications/$uid").get().addOnSuccessListener {
+                    for (i in postlists) {
+                        val post = i
+                        val postId = post.postId
+                        FirebaseDatabase.getInstance().getReference("Posts").child("$postId/Applications/$uid").removeValue()
+                    }
                 }
-                //////////////////////////////////
+
                 revokeAccess()
                 mAlertDialog.dismiss()
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
-                finish()
-                //finishAffinity()
+                finishAffinity()
+
             }
         }
 
@@ -252,6 +254,7 @@ class MyPageActivity : AppCompatActivity() {
 
         override fun onBindViewHolder(holder: InfluencerViewHolder, position: Int) {
             val post = posts[position]
+            postlists = posts
             Picasso.get().load(Uri.parse(post.image)).fit().centerCrop().into(holder.imageView)
             holder.contentsText.text = post.productname
             holder.who.text = post.postId

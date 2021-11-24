@@ -82,10 +82,10 @@ class ProductDetailsActivity : AppCompatActivity() {
                             Toast.makeText(this, "Application fail", Toast.LENGTH_SHORT).show()
                         }
 
-                        val influencerpost = PostModel()
-                        influencerpost.posts.put(postId.toString(),true)
+//                        val influencerpost = PostModel()
+//                        influencerpost.posts.put(postId.toString(),true)
 //                         신청 리스트 만들려면 필요..
-                        FirebaseDatabase.getInstance().getReference("Users/Influencers/$userId/Applications").push().setValue(influencerpost)
+                        FirebaseDatabase.getInstance().getReference("Users/Influencers/$userId/Applications/$postId").push().setValue(true)
                             .addOnSuccessListener {}.addOnFailureListener {
                             }
                     }else{

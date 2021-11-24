@@ -50,16 +50,16 @@ class MyPageActivity : AppCompatActivity() {
     var postlists : MutableList<Post> = mutableListOf()
     private lateinit var binding: ActivityMypageBinding
     val posts: MutableList<Post> = mutableListOf()
-    var review = false
+    var username = ""
     inner class application(val postid: String? = null)
     private lateinit var database : DatabaseReference
+    private var review = false
     val uid = FirebaseAuth.getInstance().currentUser!!.uid
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMypageBinding.inflate(layoutInflater)
         setContentView(binding.root)
         firebaseAuth = FirebaseAuth.getInstance()
-
 
         binding.home.setOnClickListener {
             database = FirebaseDatabase.getInstance().getReference("/Users/Influencers/$uid")
@@ -72,7 +72,6 @@ class MyPageActivity : AppCompatActivity() {
                 }.addOnFailureListener {
                     Toast.makeText(this, "read fail", Toast.LENGTH_SHORT).show()
                 }
-
 
             val intent = Intent(this, InfluencerMainActivity::class.java)
             startActivity(intent)
@@ -224,6 +223,7 @@ class MyPageActivity : AppCompatActivity() {
                 val snsid = it.child("sns").value
                 val name = it.child("username").value
                 val imageuri = it.child("image").value
+                username = name.toString()
                 binding.influencerName.text = name.toString()
                 binding.influencersnsid.text = snsid.toString()
                 Picasso.get().load(Uri.parse(imageuri.toString())).fit().centerCrop().into(binding.imageView)
@@ -278,17 +278,25 @@ class MyPageActivity : AppCompatActivity() {
                 // 리뷰 기능
                 val reviewBtn = mDialogView.findViewById<Button>(R.id.reviewbtn)
                 reviewBtn.setOnClickListener { // 리뷰 기능 있는 activity
-//                    review(uid,postId)
-                    // 이미 작성한 리뷰가 존재하면 -> 리뷰 수정 불가능하게..!
-                    if(review == true){
-                        Toast.makeText(this@MyPageActivity, "You already write the review!", Toast.LENGTH_SHORT).show()
-                    }
-                    else {
-                        val intent = Intent(this@MyPageActivity, ReviewActivity::class.java)
-                        intent.putExtra("postId", postId)
-//                        intent.putExtra("username", username)
-                        startActivity(intent)
-                        finish()
+                    database = FirebaseDatabase.getInstance().getReference("/Posts/$postId/Reviews")     // 이미 작성한 리뷰가 존재하면 -> 리뷰 수정 불가능하게..!
+                    database.child(uid).get().addOnSuccessListener {
+                        if (it.exists()) {
+                            val readuid = it.child("uid").value
+                            if (readuid.toString() == uid) {
+                                review = true
+                                if(review){
+                                    Toast.makeText(this@MyPageActivity, "You already write the review!", Toast.LENGTH_SHORT).show()
+                                }else{}
+                            }
+                        }
+                        else{
+                            val intent = Intent(this@MyPageActivity, ReviewActivity::class.java)
+                            intent.putExtra("postId", postId)
+                            intent.putExtra("username", username)
+                            startActivity(intent)
+                            finish()
+                        }
+                    }.addOnFailureListener {
                     }
                     mAlertDialog.dismiss()
                 }

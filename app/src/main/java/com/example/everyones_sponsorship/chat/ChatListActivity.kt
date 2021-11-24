@@ -130,6 +130,7 @@ class ChatListActivity : AppCompatActivity() {
                 val intent = Intent(this@ChatListActivity, ChattingActivity::class.java)
                 intent.putExtra("destinationUid", destinationUsers[position])
                 intent.putExtra("whoami",whoami)
+                intent.putExtra("postId",chatModel[position].postID)
                 startActivity(intent)
             }
         }

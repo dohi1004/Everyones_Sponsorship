@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.everyones_sponsorship">
+
     <uses-sdk android:minSdkVersion="19" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -15,48 +18,33 @@
         android:theme="@style/Theme.Everyones_Sponsorship">
 
         <activity android:name=".start.MainActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-        <activity android:name=".start.SplashActivity">
-
-        </activity>
-        <activity android:name=".start.SignAdvertiserActivity"></activity>
-        <activity android:name=".start.SignInfluencerActivity">
-        </activity>
-        <activity android:name=".influencer.InfluencerMainActivity">
-
-
-
-        </activity>
-        <activity android:name=".advertiser.AdvertiserMainActivity">
-
-
-        </activity>
-        <activity android:name=".advertiser.AdvertiserApplicationActivity"></activity>
-        <activity android:name=".chat.ChattingActivity">
-
-        </activity>
-        <activity android:name=".advertiser.AddPhotoActivity"></activity>
-        <activity android:name=".influencer.SearchActivity"></activity>
-        <activity android:name=".influencer.CategoryActivity"></activity>
-        <activity android:name=".influencer.ProductDetailsActivity"></activity>
-        <activity android:name=".advertiser.EditActivity"></activity>
-        <activity android:name=".influencer.MyPageActivity"></activity>
-        <activity android:name=".influencer.CategoryDetailsActivity"></activity>
-        <activity android:name=".chat.ChatListActivity">
-
-        </activity>
-        <activity android:name=".influencer.ProfileEditActivity"></activity>
-        <activity android:name=".advertiser.ProfileDetailsActivity"></activity>
-        <activity android:name=".advertiser.InstagramActivity"></activity>
-        <activity android:name=".influencer.SearchresultActivity"></activity>
-        <activity android:name=".influencer.ReviewActivity"></activity>
-
+        <activity android:name=".start.SplashActivity"></activity>
+        <activity android:name=".start.SignAdvertiserActivity" />
+        <activity android:name=".start.SignInfluencerActivity"></activity>
+        <activity android:name=".influencer.InfluencerMainActivity"></activity>
+        <activity android:name=".advertiser.AdvertiserMainActivity"></activity>
+        <activity android:name=".advertiser.AdvertiserApplicationActivity" />
+        <activity android:name=".chat.ChattingActivity"></activity>
+        <activity android:name=".advertiser.AddPhotoActivity" />
+        <activity android:name=".influencer.SearchActivity" />
+        <activity android:name=".influencer.CategoryActivity" />
+        <activity android:name=".influencer.ProductDetailsActivity" />
+        <activity android:name=".advertiser.EditActivity" />
+        <activity android:name=".influencer.MyPageActivity" />
+        <activity android:name=".influencer.CategoryDetailsActivity" />
+        <activity android:name=".chat.ChatListActivity"></activity>
+        <activity android:name=".advertiser.EditprofileAdvertiser" />
+        <activity android:name=".influencer.ProfileEditActivity" />
+        <activity android:name=".advertiser.ProfileDetailsActivity" />
+        <activity android:name=".advertiser.InstagramActivity" />
+        <activity android:name=".influencer.SearchresultActivity" />
+        <activity android:name=".influencer.ReviewActivity" />
     </application>
 
 </manifest>

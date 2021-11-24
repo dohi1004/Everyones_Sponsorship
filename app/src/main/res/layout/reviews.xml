@@ -21,27 +21,32 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <ImageView
-                android:layout_weight="1"
-                android:id="@+id/influencerimage"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                app:srcCompat="@drawable/borderline_straight"
-                tools:layout_editor_absoluteX="16dp"
-                tools:layout_editor_absoluteY="16dp" />
-
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="80dp"
                 android:orientation="vertical"
                 android:layout_weight="5"
                 android:gravity="center_horizontal">
+                <LinearLayout
+                    android:layout_gravity="center"
+                    android:layout_below="@+id/imagelayout"
+                    android:id="@+id/linear3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_marginTop="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Reviewer:" />
                 <TextView
+                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:id="@+id/influencername"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="User name" />
+                </LinearLayout>
 
 
                 <LinearLayout

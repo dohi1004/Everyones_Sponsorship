@@ -44,7 +44,6 @@ import org.joda.time.Hours
 import org.joda.time.Minutes
 import java.text.SimpleDateFormat
 import java.util.*
-//class PostModel (val posts: HashMap<String, Boolean> = HashMap())
 class MyPageActivity : AppCompatActivity() {
     private lateinit var firebaseAuth: FirebaseAuth
     var postlists : MutableList<Post> = mutableListOf()
@@ -298,7 +297,15 @@ class MyPageActivity : AppCompatActivity() {
                     }
                     mAlertDialog.dismiss()
                 }
+                val reviewListBtn = mDialogView.findViewById<Button>(R.id.reviewlist)
+                reviewListBtn.setOnClickListener {
+                    val intent = Intent(this@MyPageActivity, ReviewListActivity::class.java)
+                    intent.putExtra("postId",postId)
+                    startActivity(intent)
+                    mAlertDialog.dismiss()
                 }
+                }
+
             }
 
 

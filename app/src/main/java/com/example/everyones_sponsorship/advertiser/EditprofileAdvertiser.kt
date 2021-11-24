@@ -30,8 +30,6 @@ class EditprofileAdvertiser : AppCompatActivity() {
     var originalname = ""
     var originalmessage = ""
     var originalimage = ""
-    var originalsns = ""
-    var originalrating = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -50,6 +50,7 @@ class MyPageActivity : AppCompatActivity() {
     var postlists : MutableList<Post> = mutableListOf()
     private lateinit var binding: ActivityMypageBinding
     val posts: MutableList<Post> = mutableListOf()
+    var review = false
     inner class application(val postid: String? = null)
     private lateinit var database : DatabaseReference
     val uid = FirebaseAuth.getInstance().currentUser!!.uid
@@ -259,6 +260,42 @@ class MyPageActivity : AppCompatActivity() {
             holder.contentsText.text = post.productname
             holder.who.text = post.postId
             holder.timeTextView.text= getDiffTimeText(post.writeTime as Long)
+
+            holder.itemView.setOnClickListener {
+                val postId = post.postId.toString()
+                val mDialogView = LayoutInflater.from(this@MyPageActivity).inflate(R.layout.dialog_influencer_application, null)
+                val mBuilder = AlertDialog.Builder(this@MyPageActivity)
+                    .setView(mDialogView)
+                val mAlertDialog = mBuilder.show()
+                val withdrawBtn = mDialogView.findViewById<Button>(R.id.withdrawbtn)
+                withdrawBtn.setOnClickListener { // 신청 삭제
+                    database = FirebaseDatabase.getInstance().getReference("Posts/${post.postId}/Applications")
+                    database.child(uid).removeValue().addOnSuccessListener {
+                        Toast.makeText(this@MyPageActivity, "Application is deleted.", Toast.LENGTH_SHORT).show()
+                    }.addOnFailureListener {  }
+                    mAlertDialog.dismiss()
+                }
+                // 리뷰 기능
+                val reviewBtn = mDialogView.findViewById<Button>(R.id.reviewbtn)
+                reviewBtn.setOnClickListener { // 리뷰 기능 있는 activity
+//                    review(uid,postId)
+                    // 이미 작성한 리뷰가 존재하면 -> 리뷰 수정 불가능하게..!
+                    if(review == true){
+                        Toast.makeText(this@MyPageActivity, "You already write the review!", Toast.LENGTH_SHORT).show()
+                    }
+                    else {
+                        val intent = Intent(this@MyPageActivity, ReviewActivity::class.java)
+                        intent.putExtra("postId", postId)
+//                        intent.putExtra("username", username)
+                        startActivity(intent)
+                        finish()
+                    }
+                    mAlertDialog.dismiss()
+                }
+                }
+            }
+
+
         }
 
         fun getDiffTimeText(targetTime: Long) : String{
@@ -294,6 +331,6 @@ class MyPageActivity : AppCompatActivity() {
 
 
     }
-}
+
 
 

@@ -28,7 +28,7 @@ class AdvertiserApplicationActivity : AppCompatActivity() {
         layoutManager.reverseLayout = true
         layoutManager.stackFromEnd = true
         recyclerview.layoutManager = layoutManager
-        recyclerview.adapter = MyAdapter(this,applications)
+        recyclerview.adapter = MyAdapter(this,applications, postId.toString())
 
         FirebaseDatabase.getInstance().getReference("/Posts/$postId/Applications").addChildEventListener(object: ChildEventListener{
             override fun onChildAdded(snapshot: DataSnapshot, prevChildKey: String?) {

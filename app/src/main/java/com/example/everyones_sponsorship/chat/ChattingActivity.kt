@@ -23,6 +23,7 @@ import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.activity_search.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.HashMap
@@ -55,11 +56,33 @@ class ChattingActivity : AppCompatActivity() {
         val time = System.currentTimeMillis()
         val dateFormat = SimpleDateFormat("MM월dd일 hh:mm")
         val curTime = dateFormat.format(Date(time)).toString()
+        val whoami = intent.getStringExtra("whoami")
+        val postId = intent.getStringExtra("postId")
 
         uid = Firebase.auth.currentUser?.uid.toString()
         recyclerView = findViewById(R.id.my_recycler_view)
         //destinationUid = "minseon"
         destinationUid = intent.getStringExtra("destinationUid")
+        if(postId == null){
+
+        }
+
+
+        if(whoami == "Influencers"){
+            binding.transaction.visibility = View.INVISIBLE
+        }
+        binding.transaction.setOnClickListener {
+            // 거래완료 버튼 advertiser가 클릭 시 -> transaction = true로 만들기
+            if(whoami == "Advertisers"){
+                FirebaseDatabase.getInstance().getReference("/Posts/$postId").child("Transaction/$destinationUid").setValue("yes").addOnSuccessListener {
+                }.addOnFailureListener {
+                    Toast.makeText(this, "Transaction fail", Toast.LENGTH_SHORT).show()
+                }
+
+            }
+        }
+
+
 
         imageView.setOnClickListener{
             val chatModel = ChatModel()

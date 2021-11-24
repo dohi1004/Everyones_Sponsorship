@@ -15,7 +15,7 @@
             android:layout_width="300dp"
             android:layout_height="30dp"
             android:id="@+id/searchtext"
-            android:hint="여기에서 검색하세요"
+            android:hint="Search here"
             android:background="@android:color/transparent"/>
 
         <ImageView

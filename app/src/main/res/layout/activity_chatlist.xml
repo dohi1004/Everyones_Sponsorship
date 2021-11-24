@@ -15,8 +15,7 @@
             android:layout_gravity="bottom"
             android:layout_marginLeft="15dp"
             android:layout_marginBottom="5dp"
-            android:fontFamily="cursive"
-            android:text="채팅"
+            android:text="Chatting List"
             android:textColor="@color/button"
             android:textSize="24sp"
             android:textStyle="bold" />

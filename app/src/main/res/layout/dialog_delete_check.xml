@@ -7,11 +7,12 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:layout_marginTop="20dp"
+        android:id="@+id/deletetext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Are you sure to delete this product?"
+        android:layout_marginTop="20dp"
         android:gravity="center"
+        android:text="Are you sure to delete this product?"
         android:textSize="18dp"></TextView>
 
     <LinearLayout

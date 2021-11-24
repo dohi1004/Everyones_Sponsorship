@@ -24,6 +24,7 @@ class ProfileDetailsActivity : AppCompatActivity() {
         val info = intent.getStringExtra("info")
         val image = intent.getStringExtra("image")
         val uid = intent.getStringExtra("uid")
+        val postId = intent.getStringExtra("postId")
 
         binding.backbtn.setOnClickListener {
             val intent = Intent(this,AdvertiserApplicationActivity::class.java)
@@ -37,6 +38,8 @@ class ProfileDetailsActivity : AppCompatActivity() {
             var inf_uid = uid
             val intent = Intent(this@ProfileDetailsActivity, ChattingActivity::class.java)
             intent.putExtra("destinationUid", inf_uid)
+            intent.putExtra("postId",postId)
+            intent.putExtra("whoami","Advertisers")
             startActivity(intent)
         }
 

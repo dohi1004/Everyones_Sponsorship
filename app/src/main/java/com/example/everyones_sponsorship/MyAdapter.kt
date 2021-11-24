@@ -15,7 +15,7 @@ import com.example.everyones_sponsorship.advertiser.ProfileDetailsActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.influencer_info.view.*
 
-class MyAdapter(var c: Context, var applications: MutableList<Influencer>) : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
+class MyAdapter(var c: Context, var applications: MutableList<Influencer>,val postId: String) : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):MyAdapter.ViewHolder {
         return ViewHolder(
             LayoutInflater.from(parent.context)
@@ -41,6 +41,7 @@ class MyAdapter(var c: Context, var applications: MutableList<Influencer>) : Rec
             intent.putExtra("info",application.INFO)
             intent.putExtra("image",application.image)
             intent.putExtra("uid",application.uid)
+            intent.putExtra("postId",postId)
             c.startActivity(intent)
 
         }

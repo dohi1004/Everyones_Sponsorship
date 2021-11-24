@@ -29,7 +29,6 @@ import kotlin.collections.ArrayList
 
 class ChatListActivity : AppCompatActivity() {
     private val fireDatabase = FirebaseDatabase.getInstance().reference
-
 //    inner class ChatModel (val users: HashMap<String, Boolean> = HashMap(),
 //                           val comments : HashMap<String, Comment> = HashMap()){
 //        inner class Comment(val uid: String? = null, val message: String? = null, val time: String? = null)
@@ -127,8 +126,10 @@ class ChatListActivity : AppCompatActivity() {
 
             //채팅창 선책 시 이동
             holder.itemView.setOnClickListener {
+                val whoami = intent.getStringExtra("whoami")
                 val intent = Intent(this@ChatListActivity, ChattingActivity::class.java)
                 intent.putExtra("destinationUid", destinationUsers[position])
+                intent.putExtra("whoami",whoami)
                 startActivity(intent)
             }
         }

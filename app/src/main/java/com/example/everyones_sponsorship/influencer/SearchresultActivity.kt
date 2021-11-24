@@ -37,7 +37,11 @@ class SearchresultActivity : AppCompatActivity() {
         var binding = ActivitySearchresultBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         val searchname = getIntent().getStringExtra("text")
+        val resulttext = "\"$searchname\""
+        binding.resulttext.text = resulttext
+
         val layoutManager = LinearLayoutManager(this)
 
         layoutManager.reverseLayout = true

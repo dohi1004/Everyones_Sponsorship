@@ -38,6 +38,10 @@ class AdvertiserMainActivity : AppCompatActivity() {
     private lateinit var database : DatabaseReference
     val userId =  FirebaseAuth.getInstance().currentUser!!.uid
 
+    private fun revokeAccess() {
+        FirebaseAuth.getInstance().getCurrentUser()?.delete()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -63,6 +67,40 @@ class AdvertiserMainActivity : AppCompatActivity() {
         binding.editAdvertiser.setOnClickListener{
             val intent = Intent(this, EditprofileAdvertiser::class.java)
             startActivity(intent)
+        }
+
+        binding.withdrawl.setOnClickListener {
+            val mDialogView = LayoutInflater.from(this@AdvertiserMainActivity).inflate(R.layout.dialog_withdrawl_check, null)
+            val mBuilder = AlertDialog.Builder(this@AdvertiserMainActivity)
+                .setView(mDialogView)
+            val mAlertDialog = mBuilder.show()
+
+            val nobtn = mDialogView.findViewById<Button>(R.id.no)
+            nobtn.setOnClickListener {
+                mAlertDialog.dismiss()
+            }
+            val yesbtn = mDialogView.findViewById<Button>(R.id.yes)
+
+            yesbtn.setOnClickListener {
+
+                database = FirebaseDatabase.getInstance().getReference("Users")
+                database.child("Advertisers/$userId").removeValue().addOnSuccessListener{}.addOnFailureListener{}
+
+                FirebaseDatabase.getInstance().getReference("Posts").orderByChild("writeId").equalTo(userId).get().addOnSuccessListener {
+                    for (i in posts) {
+                        val post = i
+                        val postId = post.postId
+                        FirebaseDatabase.getInstance().getReference("Posts").child("$postId").removeValue()
+                    }
+                }
+
+                revokeAccess()
+                mAlertDialog.dismiss()
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finishAffinity()
+
+            }
         }
 
     val layoutManager = LinearLayoutManager(this@AdvertiserMainActivity)

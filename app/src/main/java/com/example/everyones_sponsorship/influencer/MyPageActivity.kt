@@ -109,6 +109,7 @@ class MyPageActivity : AppCompatActivity() {
 
         binding.editbtn.setOnClickListener {
             val intent = Intent(this, ProfileEditActivity::class.java)
+            intent.putExtra("username",username)
             startActivity(intent)
         }
         binding.influencerLogout.setOnClickListener {

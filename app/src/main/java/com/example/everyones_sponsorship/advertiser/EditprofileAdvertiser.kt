@@ -58,7 +58,7 @@ class EditprofileAdvertiser : AppCompatActivity() {
             var username = originalname
             var business_id = binding.businessid.text.toString()
 
-            val temp : DatabaseReference = FirebaseDatabase.getInstance().getReference("/Users/Influencers")
+            val temp : DatabaseReference = FirebaseDatabase.getInstance().getReference("/Users/Advertisers")
             temp.child(uid).get().addOnSuccessListener {
                 if (business_id == "") business_id = originalmessage
                 if (photoUri.toString() == "null") photoUri = originalimage.toString().toUri()
@@ -72,7 +72,7 @@ class EditprofileAdvertiser : AppCompatActivity() {
 
     }
     private fun readData(userId: String){
-        database = FirebaseDatabase.getInstance().getReference("/Users/Influencers")
+        database = FirebaseDatabase.getInstance().getReference("/Users/Advertisers")
         database.child(userId).get().addOnSuccessListener {
             if(it.exists()){
                 val name = it.child("username").value

@@ -133,13 +133,17 @@ class ProfileEditActivity: AppCompatActivity() {
         influencer["rating"] = rating
         influencer["username"] = username
         influencer["sns"] = snsId
-
+        // 인플루언서 업데이트
         val database = FirebaseDatabase.getInstance().getReference("/Users/Influencers")
         database.child(uid).updateChildren(influencer).addOnSuccessListener {
             Toast.makeText(this, "Edit complete", Toast.LENGTH_SHORT).show()
         }.addOnFailureListener {
             Toast.makeText(this, "Edit fail", Toast.LENGTH_SHORT).show()
         }
+        // post 업데이트
+        FirebaseDatabase.getInstance().getReference("/Posts").orderByChild("Applications/$uid/uid").equalTo(uid).get().addOnSuccessListener {
+        }
+
         finish()
 
     }

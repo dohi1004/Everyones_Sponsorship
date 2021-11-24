@@ -62,17 +62,6 @@ class MyPageActivity : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
 
         binding.home.setOnClickListener {
-            database = FirebaseDatabase.getInstance().getReference("/Users/Influencers/$uid")
-            database.child("Applications").child("-Mp1I85uvTaM0RHpOHSh").get().addOnSuccessListener{
-                    if(it.exists()){
-                        val name = it.key
-                        Toast.makeText(this, "$name", Toast.LENGTH_SHORT).show()
-                    }else{
-                    }
-                }.addOnFailureListener {
-                    Toast.makeText(this, "read fail", Toast.LENGTH_SHORT).show()
-                }
-
             val intent = Intent(this, InfluencerMainActivity::class.java)
             startActivity(intent)
             finish()

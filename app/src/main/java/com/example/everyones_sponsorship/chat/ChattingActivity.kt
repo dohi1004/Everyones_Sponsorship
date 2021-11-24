@@ -29,7 +29,9 @@ import java.util.*
 import kotlin.collections.HashMap
 
 class ChatModel (val users: HashMap<String, Boolean> = HashMap(),
-                 val comments : HashMap<String, Comment> = HashMap()){
+                 val comments : HashMap<String, Comment> = HashMap(),
+                 val postID : HashMap<String, Boolean> = HashMap()
+){
     class Comment(val uid: String? = null, val message: String? = null, val time: String? = null)
 }
 
@@ -88,6 +90,7 @@ class ChattingActivity : AppCompatActivity() {
             val chatModel = ChatModel()
             chatModel.users.put(uid.toString(), true)
             chatModel.users.put(destinationUid!!, true)
+            chatModel.postID.put(postId.toString(), true)
             val comment = ChatModel.Comment(uid, editText.text.toString(), curTime)
 
             if(chatRoomUid == null){

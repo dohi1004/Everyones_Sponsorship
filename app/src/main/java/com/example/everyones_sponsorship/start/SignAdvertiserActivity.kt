@@ -68,7 +68,7 @@ class SignAdvertiserActivity : AppCompatActivity() {
                                 intent.putExtra("user_id", firebaseUser.uid)
                                 intent.putExtra("email_id", email)
 
-                                val advertiser = Advertiser(username = email, password = password, business = businessid, uid = firebaseUser.uid)
+                                val advertiser = Advertiser(username = email, image = "content://media/external/images/media/31", business = businessid, uid = firebaseUser.uid)
                                 database = FirebaseDatabase.getInstance().getReference("Users/Advertisers")
                                 database.child(firebaseUser.uid).setValue(advertiser).addOnSuccessListener {
                                 }.addOnFailureListener {  }

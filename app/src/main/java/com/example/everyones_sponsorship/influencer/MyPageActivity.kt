@@ -265,7 +265,16 @@ class MyPageActivity : AppCompatActivity() {
                     mAlertDialog.dismiss()
                 }
                 // 리뷰 기능
+
                 val reviewBtn = mDialogView.findViewById<Button>(R.id.reviewbtn)
+                reviewBtn.visibility = View.GONE
+                // 광고주가 해당 인플루언서에 대해 거래 완료를 눌렀으면, 버튼 활성화
+                FirebaseDatabase.getInstance().getReference("/Posts/$postId/Transaction").get().addOnSuccessListener {
+                    val key = it.child("$uid").value
+                    if(key.toString() == "yes"){
+                        reviewBtn.visibility = View.VISIBLE
+                    }
+                }
                 reviewBtn.setOnClickListener { // 리뷰 기능 있는 activity
                     database = FirebaseDatabase.getInstance().getReference("/Posts/$postId/Reviews")     // 이미 작성한 리뷰가 존재하면 -> 리뷰 수정 불가능하게..!
                     database.child(uid).get().addOnSuccessListener {

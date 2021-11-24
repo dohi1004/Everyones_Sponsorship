@@ -59,15 +59,15 @@ class ChattingActivity : AppCompatActivity() {
         val dateFormat = SimpleDateFormat("MM월dd일 hh:mm")
         val curTime = dateFormat.format(Date(time)).toString()
         val whoami = intent.getStringExtra("whoami")
-        val postId = intent.getStringExtra("postId")
+        var postId = intent.getStringExtra("postId")
+
 
         uid = Firebase.auth.currentUser?.uid.toString()
         recyclerView = findViewById(R.id.my_recycler_view)
         //destinationUid = "minseon"
         destinationUid = intent.getStringExtra("destinationUid")
-        if(postId == null){
 
-        }
+//        postId = postId?.split("[").toString()
 
 
         if(whoami == "Influencers"){

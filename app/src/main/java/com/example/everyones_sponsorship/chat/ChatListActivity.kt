@@ -123,14 +123,13 @@ class ChatListActivity : AppCompatActivity() {
             commentMap.putAll(chatModel[position].comments)
             val lastMessageKey = commentMap.keys.toTypedArray()[0]
             holder.textView_lastMessage.text = chatModel[position].comments[lastMessageKey]?.message
-
             //채팅창 선책 시 이동
             holder.itemView.setOnClickListener {
                 val whoami = intent.getStringExtra("whoami")
                 val intent = Intent(this@ChatListActivity, ChattingActivity::class.java)
                 intent.putExtra("destinationUid", destinationUsers[position])
                 intent.putExtra("whoami",whoami)
-                intent.putExtra("postId",chatModel[position].postID)
+                intent.putExtra("postId",chatModel[position].postID.keys.elementAt(0))
                 startActivity(intent)
             }
         }

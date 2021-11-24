@@ -65,13 +65,12 @@ class ProfileEditActivity: AppCompatActivity() {
         }
 
         binding.editbtn.setOnClickListener {
-            var username = binding.name.text.toString()
+            val username = originalname
             var snsid = binding.snsid.text.toString()
             var info = binding.info.text.toString()
 
             val temp : DatabaseReference = FirebaseDatabase.getInstance().getReference("/Users/Influencers")
             temp.child(uid).get().addOnSuccessListener {
-                if (username == "") username = originalname
                 if (snsid == "") snsid = originalsns
                 if (info == "") info = originalmessage
                 if (photoUri.toString() == "null") photoUri = originalimage.toString().toUri()
@@ -99,7 +98,6 @@ class ProfileEditActivity: AppCompatActivity() {
                 originalimage = imageuri.toString()
                 originalrating = rating.toString().toInt()
 
-                binding.name.setHint(name.toString())
                 binding.info.setHint(info.toString())
                 Picasso.get().load(Uri.parse(imageuri.toString())).fit().centerCrop().into(binding.profile)
                 binding.snsid.setHint(snsid.toString())

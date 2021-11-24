@@ -55,12 +55,11 @@ class EditprofileAdvertiser : AppCompatActivity() {
         }
 
         binding.editbtn.setOnClickListener {
-            var username = binding.name.text.toString()
+            var username = originalname
             var business_id = binding.businessid.text.toString()
 
             val temp : DatabaseReference = FirebaseDatabase.getInstance().getReference("/Users/Influencers")
             temp.child(uid).get().addOnSuccessListener {
-                if (username == "") username = originalname
                 if (business_id == "") business_id = originalmessage
                 if (photoUri.toString() == "null") photoUri = originalimage.toString().toUri()
                 Update(business_id, uid, username)
@@ -84,7 +83,6 @@ class EditprofileAdvertiser : AppCompatActivity() {
                 originalmessage = business_id.toString()
                 originalimage = imageuri.toString()
 
-                binding.name.setHint(name.toString())
                 binding.businessid.setHint(business_id.toString())
                 Picasso.get().load(Uri.parse(imageuri.toString())).fit().centerCrop().into(binding.profile)
 

@@ -146,6 +146,13 @@ class SearchresultActivity : AppCompatActivity() {
             holder.itemView.setOnClickListener {
                 intent.putExtra("postId",post.postId)
                 val intent = Intent(this@SearchresultActivity, ProductDetailsActivity::class.java)
+                intent.putExtra("postId",post.postId)
+                intent.putExtra("productname",post.productname)
+                intent.putExtra("message",post.message)
+                intent.putExtra("category",post.category)
+                intent.putExtra("rating",post.rating)
+                intent.putExtra("image",post.image)
+                intent.putExtra("timestamp", post.writeTime as Long)
                 startActivity(intent)
             }
         }

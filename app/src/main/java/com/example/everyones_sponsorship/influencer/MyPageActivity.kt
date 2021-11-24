@@ -261,6 +261,11 @@ class MyPageActivity : AppCompatActivity() {
                     database.child(uid).removeValue().addOnSuccessListener {
                         Toast.makeText(this@MyPageActivity, "Application is deleted.", Toast.LENGTH_SHORT).show()
                     }.addOnFailureListener {  }
+
+                    database = FirebaseDatabase.getInstance().getReference("Users/Influencers/$uid/Applications")
+                    database.child(post.postId).removeValue().addOnSuccessListener {
+                    }.addOnFailureListener {  }
+
                     mAlertDialog.dismiss()
                 }
                 // 리뷰 기능

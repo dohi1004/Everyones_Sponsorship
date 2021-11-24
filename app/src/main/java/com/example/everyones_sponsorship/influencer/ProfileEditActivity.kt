@@ -141,8 +141,11 @@ class ProfileEditActivity: AppCompatActivity() {
             Toast.makeText(this, "Edit fail", Toast.LENGTH_SHORT).show()
         }
         // post 업데이트
-        FirebaseDatabase.getInstance().getReference("/Posts").orderByChild("Applications/$uid/uid").equalTo(uid).get().addOnSuccessListener {
+        FirebaseDatabase.getInstance().getReference("/Posts").orderByChild("Applications/$uid").equalTo(uid).get().addOnSuccessListener {
+            it.ref.updateChildren(influencer)
         }
+
+
 
         finish()
 

@@ -158,7 +158,6 @@ class InfluencerMainActivity : AppCompatActivity() {
         val imageView : ImageView = itemView.productimage
         val contentsText : TextView = itemView.productname
         val timeTextView : TextView = itemView.timediff
-        val who : TextView = itemView.writers
 
     }
 
@@ -175,7 +174,6 @@ class InfluencerMainActivity : AppCompatActivity() {
             val post = posts[position]
             Picasso.get().load(Uri.parse(post.image)).fit().centerCrop().into(holder.imageView)
             holder.contentsText.text = post.productname
-            holder.who.text = post.postId
             holder.timeTextView.text= getDiffTimeText(post.writeTime as Long)
             // recylcer view item 클릭 시
             holder.itemView.setOnClickListener {

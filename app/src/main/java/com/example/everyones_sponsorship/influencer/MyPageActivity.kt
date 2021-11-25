@@ -229,7 +229,6 @@ class MyPageActivity : AppCompatActivity() {
         val imageView : ImageView = itemView.productimage
         val contentsText : TextView = itemView.productname
         val timeTextView : TextView = itemView.timediff
-        val who : TextView = itemView.writers
 
     }
 
@@ -247,7 +246,6 @@ class MyPageActivity : AppCompatActivity() {
             postlists = posts
             Picasso.get().load(Uri.parse(post.image)).fit().centerCrop().into(holder.imageView)
             holder.contentsText.text = post.productname
-            holder.who.text = post.postId
             holder.timeTextView.text= getDiffTimeText(post.writeTime as Long)
 
             holder.itemView.setOnClickListener {

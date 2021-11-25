@@ -1,6 +1,7 @@
 package com.example.everyones_sponsorship.influencer
 
 
+import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -21,6 +22,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_add_photo.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -53,17 +55,17 @@ class ProfileEditActivity: AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-        // 프로필 이미지 변경
-        binding.upload.setOnClickListener {
-            storage = FirebaseStorage.getInstance()
-            auth = FirebaseAuth.getInstance()
-            firestore = FirebaseFirestore.getInstance()
-            //Open the album
-            var photoPickerIntent = Intent(Intent.ACTION_PICK)
-            photoPickerIntent.type = "image/*"
-            startActivityForResult(photoPickerIntent, PICK_IMAGE_FROM_ALBUM)
-        }
-
+//        // 프로필 이미지 변경
+//        binding.upload.setOnClickListener {
+//            storage = FirebaseStorage.getInstance()
+//            auth = FirebaseAuth.getInstance()
+//            firestore = FirebaseFirestore.getInstance()
+//            //Open the album
+//            var photoPickerIntent = Intent(Intent.ACTION_PICK)
+//            photoPickerIntent.type = "image/*"
+//            startActivityForResult(photoPickerIntent, PICK_IMAGE_FROM_ALBUM)
+//        }
+//
         binding.editbtn.setOnClickListener {
             val username = originalname
             var snsid = binding.snsid.text.toString()
@@ -83,6 +85,22 @@ class ProfileEditActivity: AppCompatActivity() {
         }
 
     }
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//        if(requestCode == PICK_IMAGE_FROM_ALBUM){
+//            if(resultCode == Activity.RESULT_OK){
+//                //This is path to the selected image
+//                photoUri = data?.data
+//                addphoto_image.setImageURI(photoUri)
+//
+//            }else{
+//                //Exit the addPhotoActivity if you leave the album without selecting it
+//                finish()
+//
+//            }
+//        }
+//    }
+
     private fun readData(userId: String){
         database = FirebaseDatabase.getInstance().getReference("/Users/Influencers")
         database.child(userId).get().addOnSuccessListener {
@@ -146,6 +164,6 @@ class ProfileEditActivity: AppCompatActivity() {
 
 
         finish()
-
+//
     }
 }

@@ -35,7 +35,7 @@
                 android:layout_height="80dp"
                 android:orientation="vertical"
                 android:layout_weight="5"
-                android:gravity="center_horizontal">
+                android:gravity="center">
 
                 <TextView
 
@@ -43,39 +43,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Product name" />
-
-                <TextView
-                    android:layout_marginTop="5dp"
-                    android:id="@+id/writers"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Advertiser" />
-
-                <LinearLayout
-                    android:layout_marginTop="10dp"
-                    android:layout_gravity="center"
-                    android:layout_below="@+id/imagelayout"
-                    android:id="@+id/linear2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/imageView5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ic_baseline_send_24" />
-
-                    <TextView
-                        android:id="@+id/applicationcount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:layout_marginLeft="15dp"
-                        android:text="TextView" />
-
-                </LinearLayout>
-
 
             </LinearLayout>
 

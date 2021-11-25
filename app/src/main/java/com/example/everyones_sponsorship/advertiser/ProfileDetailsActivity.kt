@@ -29,7 +29,6 @@ class ProfileDetailsActivity : AppCompatActivity() {
         binding.backbtn.setOnClickListener {
             val intent = Intent(this,AdvertiserApplicationActivity::class.java)
             startActivity(intent)
-            Toast.makeText(this, "rating: $rating,name: $name, $snsid, $info, uid: $uid", Toast.LENGTH_SHORT).show()
             finish()
         }
 

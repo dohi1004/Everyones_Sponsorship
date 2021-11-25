@@ -25,6 +25,8 @@ class AdvertiserApplicationActivity : AppCompatActivity() {
         val postId = intent.getStringExtra("postId")
         val layoutManager = LinearLayoutManager(this)
 
+        binding.toolbar.title = "Application List"
+
         layoutManager.reverseLayout = true
         layoutManager.stackFromEnd = true
         recyclerview.layoutManager = layoutManager

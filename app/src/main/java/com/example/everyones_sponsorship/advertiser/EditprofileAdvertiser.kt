@@ -1,9 +1,11 @@
 package com.example.everyones_sponsorship.advertiser
 
+import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.core.net.toUri
 import com.example.everyones_sponsorship.databinding.ActivityEditprofileAdvertiserBinding
@@ -15,25 +17,25 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_add_photo.*
 import java.text.SimpleDateFormat
 import java.util.*
 
 class EditprofileAdvertiser : AppCompatActivity() {
     var PICK_IMAGE_FROM_ALBUM = 0
-    var storage: FirebaseStorage? = null
-    var photoUri: Uri? = null
-    var auth: FirebaseAuth? = null
-    var firestore: FirebaseFirestore? = null
-    val uid = FirebaseAuth.getInstance().currentUser!!.uid
+    var storage : FirebaseStorage? = null
+    var photoUri : Uri? = null
+    var auth : FirebaseAuth? = null
+    var firestore : FirebaseFirestore? = null
+    val uid =  FirebaseAuth.getInstance().currentUser!!.uid
     private lateinit var database: DatabaseReference
     private lateinit var binding: ActivityEditprofileAdvertiserBinding
     var originalname = ""
-    var originalmessage = ""
-    var originalimage = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        val originalimage = "content://media/external/images/media/31"
+        val originalmessage = "" // 여기서는 business id에 대응
         binding = ActivityEditprofileAdvertiserBinding.inflate(layoutInflater)
         setContentView(binding.root)
         readData(uid)
@@ -43,16 +45,18 @@ class EditprofileAdvertiser : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-        // 프로필 이미지 변경
-        binding.upload.setOnClickListener {
-            storage = FirebaseStorage.getInstance()
-            auth = FirebaseAuth.getInstance()
-            firestore = FirebaseFirestore.getInstance()
-            //Open the album
-            var photoPickerIntent = Intent(Intent.ACTION_PICK)
-            photoPickerIntent.type = "image/*"
-            startActivityForResult(photoPickerIntent, PICK_IMAGE_FROM_ALBUM)
-        }
+//        // 프로필 이미지 변경
+//        binding.upload.setOnClickListener{
+//            //Initiate
+//            storage = FirebaseStorage.getInstance()
+//            auth = FirebaseAuth.getInstance()
+//            firestore = FirebaseFirestore.getInstance()
+//
+//            //Open the album -> 갤러리에서 가져오기
+//            var photoPickerIntent = Intent(Intent.ACTION_PICK)
+//            photoPickerIntent.type = "image/*"
+//            startActivityForResult(photoPickerIntent,PICK_IMAGE_FROM_ALBUM)
+//        }
 
         binding.editbtn.setOnClickListener {
             var username = originalname
@@ -60,7 +64,7 @@ class EditprofileAdvertiser : AppCompatActivity() {
 
             val temp : DatabaseReference = FirebaseDatabase.getInstance().getReference("/Users/Advertisers")
             temp.child(uid).get().addOnSuccessListener {
-                if (business_id == "") business_id = originalmessage
+                if (business_id == "") business_id = originalmessage.toString()
                 if (photoUri.toString() == "null") photoUri = originalimage.toString().toUri()
                 Update(business_id, uid, username)
                 val intent = Intent(this, AdvertiserMainActivity::class.java)
@@ -71,6 +75,7 @@ class EditprofileAdvertiser : AppCompatActivity() {
         }
 
     }
+
     private fun readData(userId: String){
         database = FirebaseDatabase.getInstance().getReference("/Users/Advertisers")
         database.child(userId).get().addOnSuccessListener {
@@ -80,9 +85,6 @@ class EditprofileAdvertiser : AppCompatActivity() {
                 val imageuri = it.child("image").value
 
                 originalname = name.toString()
-                originalmessage = business_id.toString()
-                originalimage = imageuri.toString()
-
                 binding.businessid.setHint(business_id.toString())
                 Picasso.get().load(Uri.parse(imageuri.toString())).fit().centerCrop().into(binding.profile)
 
@@ -93,19 +95,10 @@ class EditprofileAdvertiser : AppCompatActivity() {
         }
 
     }
-    fun Update(
-        business: String,
-        uid: String,
-        username: String
-    ) {
+    fun Update(business: String, uid: String, username: String) {
         var timestamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
         var imageFileName = "IMAGE_" + timestamp + "_.png"
         var storageRef = storage?.reference?.child("images")?.child(imageFileName)
-        storageRef?.putFile(photoUri!!)
-            ?.continueWithTask { task: Task<UploadTask.TaskSnapshot> ->
-                return@continueWithTask storageRef.downloadUrl
-            }?.addOnSuccessListener {
-            }
         var Adver = mutableMapOf<String, Any>()
         Adver["business"] = business
         Adver["image"] = photoUri.toString()
@@ -118,7 +111,13 @@ class EditprofileAdvertiser : AppCompatActivity() {
         }.addOnFailureListener {
             Toast.makeText(this, "Edit fail", Toast.LENGTH_SHORT).show()
         }
+        //Promise method
+        storageRef?.putFile(photoUri!!)?.continueWithTask { task: Task<UploadTask.TaskSnapshot> ->
+            return@continueWithTask storageRef.downloadUrl
+        }?.addOnSuccessListener {
+            Toast.makeText(this, "storage", Toast.LENGTH_SHORT).show()
+        }
         finish()
-
+//
     }
 }

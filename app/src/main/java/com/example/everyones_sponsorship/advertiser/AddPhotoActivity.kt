@@ -119,13 +119,12 @@ class AddPhotoActivity : AppCompatActivity() {
 
 
         binding.realupload.setOnClickListener{
-
             //Initiate
             storage = FirebaseStorage.getInstance()
             auth = FirebaseAuth.getInstance()
             firestore = FirebaseFirestore.getInstance()
 
-            //Open the album
+            //Open the album -> 갤러리에서 가져오기
             var photoPickerIntent = Intent(Intent.ACTION_PICK)
             photoPickerIntent.type = "image/*"
             startActivityForResult(photoPickerIntent,PICK_IMAGE_FROM_ALBUM)
@@ -139,11 +138,7 @@ class AddPhotoActivity : AppCompatActivity() {
             val intent = Intent(this, AdvertiserMainActivity::class.java)
             startActivity(intent)
 
-
         }
-
-
-
 
 
     }

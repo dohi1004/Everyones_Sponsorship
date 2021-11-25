@@ -205,7 +205,6 @@ class AdvertiserMainActivity : AppCompatActivity() {
         val imageView : ImageView = itemView.productimage
         val contentsText : TextView = itemView.productname
         val timeTextView : TextView = itemView.timediff
-        val who : TextView = itemView.writers
 
     }
 
@@ -222,7 +221,6 @@ class AdvertiserMainActivity : AppCompatActivity() {
             val post = posts[position]
             Picasso.get().load(Uri.parse(post.image)).fit().centerCrop().into(holder.imageView)
             holder.contentsText.text = post.productname
-            holder.who.text = post.postId
             holder.timeTextView.text= getDiffTimeText(post.writeTime as Long)
 
             holder.itemView.setOnClickListener {
@@ -313,8 +311,11 @@ class AdvertiserMainActivity : AppCompatActivity() {
             if(it.exists()){
                 val name = it.child("username").value
                 val business = it.child("business").value
+                val imageuri = it.child("image").value
                 binding.advertiserName.text = name.toString()
                 binding.advertiserid.text = business.toString()
+                Picasso.get().load(Uri.parse(imageuri.toString())).fit().centerCrop().into(binding.imageView)
+
 
 
             }else{

@@ -77,6 +77,8 @@ class ChattingActivity : AppCompatActivity() {
             // 거래완료 버튼 advertiser가 클릭 시 -> transaction = true로 만들기
             if(whoami == "Advertisers"){
                 FirebaseDatabase.getInstance().getReference("/Posts/$postId").child("Transaction/$destinationUid").setValue("yes").addOnSuccessListener {
+                    Toast.makeText(this, "Transaction complete", Toast.LENGTH_SHORT).show()
+                    binding.transaction.visibility = View.INVISIBLE
                 }.addOnFailureListener {
                     Toast.makeText(this, "Transaction fail", Toast.LENGTH_SHORT).show()
                 }

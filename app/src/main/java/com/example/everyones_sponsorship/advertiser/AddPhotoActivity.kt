@@ -159,10 +159,7 @@ class AddPhotoActivity : AppCompatActivity() {
         }
     }
     fun contentUpload(description: String, rating : Int, productname : String, category:String){
-        var timestamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
-        var imageFileName = "IMAGE_" + timestamp + "_.png"
-
-        var storageRef = storage?.reference?.child("images")?.child(imageFileName)
+//        var timestamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
 
         val database = FirebaseDatabase.getInstance().getReference("Posts").push()
         val post = Post()
@@ -174,7 +171,8 @@ class AddPhotoActivity : AppCompatActivity() {
         post.rating = rating
         post.category = category
         post.writeId = uid
-
+        var imageFileName = "IMAGE_" +  post.postId + "_.png"
+        var storageRef = storage?.reference?.child("images")?.child(imageFileName)
         database.setValue(post)
         Toast.makeText(this, "Upload complete", Toast.LENGTH_SHORT).show()
         finish()

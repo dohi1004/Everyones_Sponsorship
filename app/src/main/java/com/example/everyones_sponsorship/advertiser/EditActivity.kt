@@ -170,8 +170,8 @@ class EditActivity : AppCompatActivity() {
 
     // 게시글 수정 위한 update
     fun contentUpload(description: String, rating: Int, productname: String, category:String, postId: String){
-        var timestamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
-        var imageFileName = "IMAGE_" + timestamp + "_.png"
+//        var timestamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
+        var imageFileName = "IMAGE_" + postId + "_.png"
         var storageRef = storage?.reference?.child("images")?.child(imageFileName)
         storageRef?.putFile(photoUri!!)?.continueWithTask { task: Task<UploadTask.TaskSnapshot> ->
             return@continueWithTask storageRef.downloadUrl

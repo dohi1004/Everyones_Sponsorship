@@ -16,6 +16,7 @@ import com.example.everyones_sponsorship.databinding.ActivityProductinfoBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_advertiser_main.*
 
@@ -42,7 +43,13 @@ class ProductDetailsActivity : AppCompatActivity() {
 
         binding.productname.text = productname.toString()
         binding.Productdetails.text = message.toString()
-        Picasso.get().load(Uri.parse(image.toString())).fit().centerCrop().into(binding.storedproductimage)
+        val storage = FirebaseStorage.getInstance()
+        val storageRef = storage!!.reference
+        var imageFileName = "IMAGE_" + postId + "_.png"
+        storageRef!!.child("images").child(imageFileName)?.downloadUrl?.addOnSuccessListener { uri->
+            Picasso.get().load(uri).fit().centerCrop().into(binding.storedproductimage)
+        }
+//        Picasso.get().load(Uri.parse(image.toString())).fit().centerCrop().into(binding.storedproductimage)
 
         // 뒤로가기
         binding.backbtn.setOnClickListener {

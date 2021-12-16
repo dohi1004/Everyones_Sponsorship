@@ -10,12 +10,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.everyones_sponsorship.*
+import com.example.everyones_sponsorship.R
 import com.example.everyones_sponsorship.chat.ChatListActivity
 import com.example.everyones_sponsorship.databinding.ActivityInfluencermainBinding
-import com.google.firebase.database.ChildEventListener
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
+import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_advertiser_main.*
 import kotlinx.android.synthetic.main.activity_influencermain.*
@@ -172,7 +171,14 @@ class InfluencerMainActivity : AppCompatActivity() {
 
         override fun onBindViewHolder(holder: InfluencerViewHolder, position: Int) {
             val post = posts[position]
-            Picasso.get().load(Uri.parse(post.image)).fit().centerCrop().into(holder.imageView)
+            val storage = FirebaseStorage.getInstance()
+            val storageRef = storage!!.reference
+            var imageFileName = "IMAGE_" + post.postId + "_.png"
+            storageRef!!.child("images").child(imageFileName)?.downloadUrl?.addOnSuccessListener { uri->
+                Picasso.get().load(uri).fit().centerCrop().into(holder.imageView)
+            }
+
+//            Picasso.get().load(Uri.parse(post.image)).fit().centerCrop().into(holder.imageView)
             holder.contentsText.text = post.productname
             holder.timeTextView.text= getDiffTimeText(post.writeTime as Long)
             // recylcer view item 클릭 시

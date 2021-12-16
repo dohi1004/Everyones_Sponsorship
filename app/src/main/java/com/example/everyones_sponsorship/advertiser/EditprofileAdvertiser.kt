@@ -86,7 +86,7 @@ class EditprofileAdvertiser : AppCompatActivity() {
 
                 originalname = name.toString()
                 binding.businessid.setHint(business_id.toString())
-                Picasso.get().load(Uri.parse(imageuri.toString())).fit().centerCrop().into(binding.profile)
+//                Picasso.get().load(Uri.parse(imageuri.toString())).fit().centerCrop().into(binding.profile)
 
             }else{
             }

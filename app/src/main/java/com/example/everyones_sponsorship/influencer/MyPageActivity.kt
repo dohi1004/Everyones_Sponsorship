@@ -32,6 +32,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_advertiser_main.*
 import kotlinx.android.synthetic.main.activity_applicationlist.*
@@ -215,12 +216,18 @@ class MyPageActivity : AppCompatActivity() {
                 username = name.toString()
                 binding.influencerName.text = name.toString()
                 binding.influencersnsid.text = snsid.toString()
-                Picasso.get().load(Uri.parse(imageuri.toString())).fit().centerCrop().into(binding.imageView)
+//                Picasso.get().load(Uri.parse(imageuri.toString())).fit().centerCrop().into(binding.imageView)
 
             }else{
             }
         }.addOnFailureListener {
             Toast.makeText(this, "read fail", Toast.LENGTH_SHORT).show()
+        }
+        val storage = FirebaseStorage.getInstance()
+        val storageRef = storage!!.reference
+        var imageFileName = "IMAGE_" + uid + "_.png"
+        storageRef!!.child("images").child(imageFileName)?.downloadUrl?.addOnSuccessListener { uri->
+            Picasso.get().load(uri).fit().centerCrop().into(binding.imageView)
         }
 
     }

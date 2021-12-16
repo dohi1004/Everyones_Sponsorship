@@ -18,9 +18,11 @@ import com.example.everyones_sponsorship.databinding.ActivityAdvertiserMainBindi
 import com.example.everyones_sponsorship.start.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_add_photo.view.*
 import kotlinx.android.synthetic.main.activity_advertiser_main.*
+import kotlinx.android.synthetic.main.activity_profile_details.view.*
 import kotlinx.android.synthetic.main.fragment_mypage.view.*
 import kotlinx.android.synthetic.main.posts.view.*
 import org.joda.time.Days
@@ -219,7 +221,12 @@ class AdvertiserMainActivity : AppCompatActivity() {
 
         override fun onBindViewHolder(holder: AdvertiserViewHolder, position: Int) {
             val post = posts[position]
-            Picasso.get().load(Uri.parse(post.image)).fit().centerCrop().into(holder.imageView)
+            val storage = FirebaseStorage.getInstance()
+            val storageRef = storage!!.reference
+            var imageFileName = "IMAGE_" + post.postId + "_.png"
+            storageRef!!.child("images").child(imageFileName)?.downloadUrl?.addOnSuccessListener { uri->
+                Picasso.get().load(uri).fit().centerCrop().into(holder.imageView)
+            }
             holder.contentsText.text = post.productname
             holder.timeTextView.text= getDiffTimeText(post.writeTime as Long)
 
@@ -314,7 +321,7 @@ class AdvertiserMainActivity : AppCompatActivity() {
                 val imageuri = it.child("image").value
                 binding.advertiserName.text = name.toString()
                 binding.advertiserid.text = business.toString()
-                Picasso.get().load(Uri.parse(imageuri.toString())).fit().centerCrop().into(binding.imageView)
+//                Picasso.get().load(Uri.parse(imageuri.toString())).fit().centerCrop().into(binding.imageView)
 
 
 

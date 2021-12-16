@@ -19,10 +19,12 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_advertiser_main.*
+import kotlinx.android.synthetic.main.activity_categorydetails.*
 
 class ProductDetailsActivity : AppCompatActivity() {
     private lateinit var binding : ActivityProductinfoBinding
     private lateinit var database : DatabaseReference
+    private val fireDatabase = FirebaseDatabase.getInstance().reference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

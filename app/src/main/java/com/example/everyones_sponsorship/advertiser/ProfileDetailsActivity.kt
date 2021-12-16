@@ -43,6 +43,7 @@ class ProfileDetailsActivity : AppCompatActivity() {
         }
 
         binding.name.text = name
+        // 이부분 고객 influencer마다 rating 평균으로 가져오는 코드로 변환
         binding.ratings.text = rating
         binding.instagram.setOnClickListener {
             val intent = Intent(this,InstagramActivity::class.java)

@@ -19,17 +19,13 @@
         <activity
             android:name=".advertiser.EditprofileAdvertiser"></activity>
         <activity android:name=".start.MainActivity">
-
-        </activity>
-        <activity android:name=".start.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-
+        <activity android:name=".start.SplashActivity" />
         <activity android:name=".start.SignAdvertiserActivity" />
         <activity android:name=".start.SignInfluencerActivity" />
         <activity android:name=".influencer.InfluencerMainActivity" />

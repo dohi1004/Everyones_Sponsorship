@@ -9,5 +9,6 @@ class Post {
     var image = ""
     var rating = 0
     var category = ""
+    var limit = 0
 //    var applictioncount = 0
 }

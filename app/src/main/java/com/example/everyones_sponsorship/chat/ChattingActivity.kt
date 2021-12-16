@@ -1,6 +1,7 @@
 package com.example.everyones_sponsorship.chat
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -9,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,7 +19,10 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.everyones_sponsorship.Friend
 import com.example.everyones_sponsorship.FriendAdvertisers
 import com.example.everyones_sponsorship.R
+import com.example.everyones_sponsorship.Review
+import com.example.everyones_sponsorship.advertiser.AdvertiserMainActivity
 import com.example.everyones_sponsorship.databinding.ActivityChattingBinding
+import com.example.everyones_sponsorship.influencer.SearchresultActivity
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
@@ -73,16 +78,81 @@ class ChattingActivity : AppCompatActivity() {
         if(whoami == "Influencers"){
             binding.transaction.visibility = View.INVISIBLE
         }
+        if(whoami == "Advertisers"){
+            FirebaseDatabase.getInstance().getReference("/Users/Influencers/$destinationUid/Reviews").child("$postId").get().addOnSuccessListener {
+                if(it.exists()){
+                    binding.transaction.visibility = View.INVISIBLE
+                }
+            }.addOnFailureListener {
+                Toast.makeText(this, "Transaction fail", Toast.LENGTH_SHORT).show()
+            }
+
+        }
+
+
         binding.transaction.setOnClickListener {
             // 거래완료 버튼 advertiser가 클릭 시 -> transaction = true로 만들기
             if(whoami == "Advertisers"){
-                FirebaseDatabase.getInstance().getReference("/Posts/$postId").child("Transaction/$destinationUid").setValue("yes").addOnSuccessListener {
-                    Toast.makeText(this, "Transaction complete", Toast.LENGTH_SHORT).show()
-                    binding.transaction.visibility = View.INVISIBLE
-                }.addOnFailureListener {
-                    Toast.makeText(this, "Transaction fail", Toast.LENGTH_SHORT).show()
-                }
+                val mDialogView = LayoutInflater.from(this).inflate(R.layout.dialog_ratingforinfluencer, null)
+                val mBuilder = AlertDialog.Builder(this)
+                    .setView(mDialogView)
+                val mAlertDialog = mBuilder.show()
+                val applyBtn = mDialogView.findViewById<Button>(R.id.applybtn)
+                val BackBtn = mDialogView.findViewById<Button>(R.id.backbtn)
+                val rating = mDialogView.findViewById<RatingBar>(R.id.rating)
+                rating.rating = 0.0F
+                applyBtn.setOnClickListener {
+                    FirebaseDatabase.getInstance().getReference("/Posts/$postId").child("Transaction/$destinationUid").setValue("yes").addOnSuccessListener {
+                        Toast.makeText(this, "Transaction complete", Toast.LENGTH_SHORT).show()
+                        binding.transaction.visibility = View.INVISIBLE
+                    }.addOnFailureListener {
+                        Toast.makeText(this, "Transaction fail", Toast.LENGTH_SHORT).show()
+                    }
+                    val currentrating = rating.rating
+                    val reviewtxt = mDialogView.findViewById<EditText>(R.id.reviewforinfluencer)
+                    val reviewtext = reviewtxt.text.toString()
+                    val review = Review(rating = currentrating.toString(), text = reviewtext, username = uid, uid = postId)
+                    // 리뷰 디비에 추가하기
+                    FirebaseDatabase.getInstance().getReference("/Users/Influencers/$destinationUid/Reviews").child(
+                        postId!!
+                    ).setValue(review).addOnSuccessListener {
+                    }.addOnFailureListener {
+                        Toast.makeText(this, "Review fail", Toast.LENGTH_SHORT).show()
+                    }
 
+                    val ref = FirebaseDatabase.getInstance().getReference("Users/Influencers/$destinationUid/Reviews")
+                    var average = 0.0
+                    var totalrating = 0.0
+                    var n = 0
+                    ref.get().addOnSuccessListener {
+                        it.children.forEach(){
+                            totalrating += it.child("rating").value.toString().toFloat()
+                            n += 1
+                        }
+                        if(n!=0){
+                            average = totalrating/n
+                        }
+
+                        // 인플루언서 rating 업데이트
+                        FirebaseDatabase.getInstance().getReference("Users/Influencers/$destinationUid/rating").setValue(average).addOnSuccessListener {
+                        }.addOnFailureListener{}
+
+                        // application 부분도 rating 업데이트
+                        databaseReference.child("Posts").orderByChild("Applications/$destinationUid/uid").equalTo("$destinationUid")
+                            .get().addOnSuccessListener {
+                                it.children.forEach(){
+                                    it.child("Applications/$destinationUid/rating").ref.setValue(average)
+                                }
+                            }.addOnFailureListener {
+                                print("안됨")
+                            }
+
+                    }.addOnFailureListener {  }
+                    mAlertDialog.dismiss()
+                }
+                BackBtn.setOnClickListener {
+                    mAlertDialog.dismiss()
+                }
             }
         }
 

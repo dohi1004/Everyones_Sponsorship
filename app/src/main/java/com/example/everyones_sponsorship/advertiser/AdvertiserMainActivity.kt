@@ -319,8 +319,15 @@ class AdvertiserMainActivity : AppCompatActivity() {
                 val name = it.child("username").value
                 val business = it.child("business").value
                 val imageuri = it.child("image").value
+                val rating = it.child("rating").value
                 binding.advertiserName.text = name.toString()
                 binding.advertiserid.text = business.toString()
+                val storage = FirebaseStorage.getInstance()
+                val storageRef = storage!!.reference
+                var imageFileName = "IMAGE_" + uid + "_.png"
+                storageRef!!.child("images").child(imageFileName)?.downloadUrl?.addOnSuccessListener { uri->
+                    Picasso.get().load(uri).fit().centerCrop().into(binding.imageView)
+                }
 //                Picasso.get().load(Uri.parse(imageuri.toString())).fit().centerCrop().into(binding.imageView)
 
 

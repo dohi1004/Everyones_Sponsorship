@@ -3,6 +3,7 @@ package com.example.everyones_sponsorship
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.example.everyones_sponsorship.advertiser.EditActivity
 import com.example.everyones_sponsorship.advertiser.ProfileDetailsActivity
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.influencer_info.view.*
 
@@ -29,7 +32,13 @@ class MyAdapter(var c: Context, var applications: MutableList<Influencer>,val po
 
     override fun onBindViewHolder(holder: MyAdapter.ViewHolder, position: Int) {
         val application = applications[position]
-        Picasso.get().load(Uri.parse(application.image)).fit().centerCrop().into(holder.imageView)
+        val storage = FirebaseStorage.getInstance()
+        val storageRef = storage!!.reference
+        var imageFileName = "IMAGE_" + application.uid + "_.png"
+        storageRef!!.child("images").child(imageFileName)?.downloadUrl?.addOnSuccessListener { uri->
+            Picasso.get().load(uri).fit().centerCrop().into(holder.imageView)
+        }
+
         holder.who.text = application.username.toString()
         holder.rating.text = application.rating.toString()
 

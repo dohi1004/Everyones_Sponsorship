@@ -191,6 +191,7 @@ class InfluencerMainActivity : AppCompatActivity() {
                 intent.putExtra("rating",post.rating)
                 intent.putExtra("image",post.image)
                 intent.putExtra("timestamp", post.writeTime as Long)
+                intent.putExtra("limit",post.limit.toString())
                 startActivity(intent)
             }
         }

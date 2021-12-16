@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.everyones_sponsorship.chat.ChattingActivity
 import com.example.everyones_sponsorship.databinding.ActivityProfileDetailsBinding
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
 
 
@@ -27,7 +28,7 @@ class ProfileDetailsActivity : AppCompatActivity() {
         val postId = intent.getStringExtra("postId")
 
         binding.backbtn.setOnClickListener {
-            val intent = Intent(this,AdvertiserApplicationActivity::class.java)
+            val intent = Intent(this,AdvertiserMainActivity::class.java)
             startActivity(intent)
             finish()
         }
@@ -49,6 +50,11 @@ class ProfileDetailsActivity : AppCompatActivity() {
             intent.putExtra("sns",snsid)
             startActivity(intent)
         }
-        Picasso.get().load(Uri.parse(image.toString())).fit().centerCrop().into(binding.image)
+        val storage = FirebaseStorage.getInstance()
+        val storageRef = storage!!.reference
+        var imageFileName = "IMAGE_" + uid + "_.png"
+        storageRef!!.child("images").child(imageFileName)?.downloadUrl?.addOnSuccessListener { uri->
+            Picasso.get().load(uri).fit().centerCrop().into(binding.image)
+        }
     }
 }

@@ -60,6 +60,8 @@ class MyPageActivity : AppCompatActivity() {
         binding = ActivityMypageBinding.inflate(layoutInflater)
         setContentView(binding.root)
         firebaseAuth = FirebaseAuth.getInstance()
+        binding.progressBar.max = 5
+
 
         binding.home.setOnClickListener {
             val intent = Intent(this, InfluencerMainActivity::class.java)
@@ -213,10 +215,11 @@ class MyPageActivity : AppCompatActivity() {
                 val snsid = it.child("sns").value
                 val name = it.child("username").value
                 val imageuri = it.child("image").value
+                val rating = it.child("rating").value
                 username = name.toString()
                 binding.influencerName.text = name.toString()
                 binding.influencersnsid.text = snsid.toString()
-//                Picasso.get().load(Uri.parse(imageuri.toString())).fit().centerCrop().into(binding.imageView)
+                binding.progressBar.progress = rating.toString().toInt()
 
             }else{
             }
@@ -251,12 +254,18 @@ class MyPageActivity : AppCompatActivity() {
         override fun onBindViewHolder(holder: InfluencerViewHolder, position: Int) {
             val post = posts[position]
             postlists = posts
-            Picasso.get().load(Uri.parse(post.image)).fit().centerCrop().into(holder.imageView)
+            val storage = FirebaseStorage.getInstance()
+            val storageRef = storage!!.reference
+            var imageFileName = "IMAGE_" + post.postId + "_.png"
+            storageRef!!.child("images").child(imageFileName)?.downloadUrl?.addOnSuccessListener { uri->
+                Picasso.get().load(uri).fit().centerCrop().into(holder.imageView)
+            }
+//            Picasso.get().load(Uri.parse(post.image)).fit().centerCrop().into(holder.imageView)
             holder.contentsText.text = post.productname
             holder.timeTextView.text= getDiffTimeText(post.writeTime as Long)
 
             holder.itemView.setOnClickListener {
-                val postId = post.postId.toString()
+                val postId = post.postId
                 val mDialogView = LayoutInflater.from(this@MyPageActivity).inflate(R.layout.dialog_influencer_application, null)
                 val mBuilder = AlertDialog.Builder(this@MyPageActivity)
                     .setView(mDialogView)

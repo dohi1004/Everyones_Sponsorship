@@ -38,7 +38,7 @@ class AddPhotoActivity : AppCompatActivity() {
 
         val seekBar = binding.ratings
         // initial rating
-        var ratings = 3
+        var ratings = 0
         var category = ""
 
         // seekbar for ratings
@@ -46,18 +46,21 @@ class AddPhotoActivity : AppCompatActivity() {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 when(seekBar?.progress){
                     0 -> {
-                        ratings = 1
+                        ratings = 0
                     }
                     1 -> {
-                        ratings = 2
+                        ratings = 1
                     }
                     2 -> {
-                        ratings = 3
+                        ratings = 2
                     }
                     3 -> {
-                        ratings = 4
+                        ratings = 3
                     }
                     4 -> {
+                        ratings = 4
+                    }
+                    5 -> {
                         ratings = 5
                     }
 
@@ -134,7 +137,6 @@ class AddPhotoActivity : AppCompatActivity() {
         //add image upload event
         binding.uploadbtn.setOnClickListener {
             contentUpload(productdescription.toString(),ratings, productname.toString(),category)
-            Toast.makeText(this, "test.", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, AdvertiserMainActivity::class.java)
             startActivity(intent)
 
@@ -168,9 +170,12 @@ class AddPhotoActivity : AppCompatActivity() {
         post.message = description
         post.image = photoUri.toString()
         post.writeTime = ServerValue.TIMESTAMP
-        post.rating = rating
+        post.rating = 0
         post.category = category
         post.writeId = uid
+        post.limit = rating
+
+
         var imageFileName = "IMAGE_" +  post.postId + "_.png"
         var storageRef = storage?.reference?.child("images")?.child(imageFileName)
         database.setValue(post)

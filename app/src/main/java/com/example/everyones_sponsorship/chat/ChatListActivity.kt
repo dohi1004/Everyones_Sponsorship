@@ -23,6 +23,8 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.squareup.picasso.Picasso
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -112,9 +114,15 @@ class ChatListActivity : AppCompatActivity() {
                         strstr = snapshot.getValue<FriendAdvertisers>()?.username
                         strimage = snapshot.getValue<FriendAdvertisers>()?.image
                     }
-                    Glide.with(holder.itemView.context).load(strimage) // friend?.image
-                        .apply(RequestOptions().circleCrop())
-                        .into(holder.imageView)
+                    val storage = FirebaseStorage.getInstance()
+                    val storageRef = storage!!.reference
+                    var imageFileName = "IMAGE_" + uid + "_.png"
+                    storageRef!!.child("images").child(imageFileName)?.downloadUrl?.addOnSuccessListener { uri->
+                        Glide.with(holder.itemView.context).load(uri) // friend?.image
+                            .apply(RequestOptions().circleCrop())
+                            .into(holder.imageView)
+                    }
+
                     holder.textView_title.text = strstr
                 }
             })

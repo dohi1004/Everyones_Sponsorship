@@ -45,18 +45,18 @@ class EditprofileAdvertiser : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-//        // 프로필 이미지 변경
-//        binding.upload.setOnClickListener{
-//            //Initiate
-//            storage = FirebaseStorage.getInstance()
-//            auth = FirebaseAuth.getInstance()
-//            firestore = FirebaseFirestore.getInstance()
-//
-//            //Open the album -> 갤러리에서 가져오기
-//            var photoPickerIntent = Intent(Intent.ACTION_PICK)
-//            photoPickerIntent.type = "image/*"
-//            startActivityForResult(photoPickerIntent,PICK_IMAGE_FROM_ALBUM)
-//        }
+        // 프로필 이미지 변경
+        binding.imageedit.setOnClickListener{
+            //Initiate
+            storage = FirebaseStorage.getInstance()
+            auth = FirebaseAuth.getInstance()
+            firestore = FirebaseFirestore.getInstance()
+
+            //Open the album -> 갤러리에서 가져오기
+            var photoPickerIntent = Intent(Intent.ACTION_PICK)
+            photoPickerIntent.type = "image/*"
+            startActivityForResult(photoPickerIntent,PICK_IMAGE_FROM_ALBUM)
+        }
 
         binding.editbtn.setOnClickListener {
             var username = originalname
@@ -75,6 +75,21 @@ class EditprofileAdvertiser : AppCompatActivity() {
         }
 
     }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == PICK_IMAGE_FROM_ALBUM){
+            if(resultCode == Activity.RESULT_OK){
+                //This is path to the selected image
+                photoUri = data?.data
+                Picasso.get().load(Uri.parse(photoUri.toString())).fit().centerCrop().into(binding.profile)
+
+            }else{
+                //Exit the addPhotoActivity if you leave the album without selecting it
+                finish()
+
+            }
+        }
+    }
 
     private fun readData(userId: String){
         database = FirebaseDatabase.getInstance().getReference("/Users/Advertisers")
@@ -86,6 +101,12 @@ class EditprofileAdvertiser : AppCompatActivity() {
 
                 originalname = name.toString()
                 binding.businessid.setHint(business_id.toString())
+                val storage = FirebaseStorage.getInstance()
+                val storageRef = storage!!.reference
+                var imageFileName = "IMAGE_" + uid + "_.png"
+                storageRef!!.child("images").child(imageFileName)?.downloadUrl?.addOnSuccessListener { uri->
+                    Picasso.get().load(uri).fit().centerCrop().into(binding.profile)
+                }
 //                Picasso.get().load(Uri.parse(imageuri.toString())).fit().centerCrop().into(binding.profile)
 
             }else{
@@ -96,8 +117,7 @@ class EditprofileAdvertiser : AppCompatActivity() {
 
     }
     fun Update(business: String, uid: String, username: String) {
-        var timestamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
-        var imageFileName = "IMAGE_" + timestamp + "_.png"
+        var imageFileName = "IMAGE_" + uid + "_.png"
         var storageRef = storage?.reference?.child("images")?.child(imageFileName)
         var Adver = mutableMapOf<String, Any>()
         Adver["business"] = business

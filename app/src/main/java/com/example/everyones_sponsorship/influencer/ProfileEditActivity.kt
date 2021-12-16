@@ -117,7 +117,13 @@ class ProfileEditActivity: AppCompatActivity() {
                 originalrating = rating.toString().toInt()
 
                 binding.info.setHint(info.toString())
-                Picasso.get().load(Uri.parse(imageuri.toString())).fit().centerCrop().into(binding.profile)
+                val storage = FirebaseStorage.getInstance()
+                val storageRef = storage!!.reference
+                var imageFileName = "IMAGE_" + userId + "_.png"
+                storageRef!!.child("images").child(imageFileName)?.downloadUrl?.addOnSuccessListener { uri->
+                    Picasso.get().load(uri).fit().centerCrop().into(binding.profile)
+                }
+//                Picasso.get().load(Uri.parse(imageuri.toString())).fit().centerCrop().into(binding.profile)
                 binding.snsid.setHint(snsid.toString())
 
             }else{

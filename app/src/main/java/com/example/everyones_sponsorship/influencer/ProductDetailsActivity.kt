@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -19,18 +20,19 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_advertiser_main.*
+import kotlinx.android.synthetic.main.activity_sign_influencer.*
 
 class ProductDetailsActivity : AppCompatActivity() {
     private lateinit var binding : ActivityProductinfoBinding
     private lateinit var database : DatabaseReference
-
+    var influencerrating = 0.0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityProductinfoBinding.inflate(layoutInflater)
 
         val userId =  FirebaseAuth.getInstance().currentUser!!.uid
-
+        var average = 0.0
         setContentView(binding.root)
         // intent로 postId 넘겨 받기 -> post 유저 별 저장하려고 하는데..
         val postId = intent.getStringExtra("postId")
@@ -40,7 +42,32 @@ class ProductDetailsActivity : AppCompatActivity() {
         val message = intent.getStringExtra("message")
         val time = intent.getStringExtra("timestamp")
         val ratings = intent.getStringExtra("rating")
+        val limit = intent.getStringExtra("limit")
+        FirebaseDatabase.getInstance().getReference("/Posts/$postId").child("Applications/$userId").get().addOnSuccessListener {
+            Log.d("he","여기 ${it.child("uid").value}")
+                if(it.child("uid").value.toString() == userId){
+                    binding.applybtn.visibility = View.GONE // 이미 신청했으면 신청 버튼 안보이게
+                }
 
+            }.addOnFailureListener {
+                print("안됨")
+            }
+
+        FirebaseDatabase.getInstance().getReference("/Posts/$postId").child("rating").get().addOnSuccessListener {
+            Log.d("yeah","${it.value}")
+             average = it.value.toString().toDouble()
+            binding.ratings.text = average.toString()
+        }.addOnFailureListener {  }
+
+        FirebaseDatabase.getInstance().getReference("/Users/Influencers/$userId").child("rating").get().addOnSuccessListener {
+            influencerrating = it.value.toString().toDouble()
+            if(influencerrating < limit.toString().toFloat()){
+                binding.applybtn.visibility = View.GONE
+            }
+        }.addOnFailureListener {  }
+
+
+        binding.limit.text = limit.toString()
         binding.productname.text = productname.toString()
         binding.Productdetails.text = message.toString()
         val storage = FirebaseStorage.getInstance()
